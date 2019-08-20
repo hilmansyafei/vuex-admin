@@ -11,7 +11,44 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
   errors: null,
-  user: {},
+  user: {
+    image: "hilmansyafei.png",
+    name: "Hilman Syafei",
+    position: "Software Engineer",
+    priviledge: [
+      {
+        access: [1, 2, 4],
+        menu: "data",
+        subMenu: "form-management"
+      },
+      {
+        access: [1, 2, 4],
+        menu: "data",
+        subMenu: "gudang-management"
+      },
+      {
+        access: [1, 2, 4],
+        menu: "data",
+        subMenu: "hilman-management"
+      },
+      {
+        access: [1, 2, 4],
+        menu: "data",
+        subMenu: "data-management"
+      },
+      {
+        access: [1, 2, 4],
+        menu: "report",
+        subMenu: "report-management"
+      },
+      {
+        access: [1, 2, 4],
+        menu: "baru",
+        subMenu: "baru-management"
+      }
+    ],
+    role: "Administrator"
+  },
   isAuthenticated: !!JwtService.getToken()
 };
 
@@ -53,7 +90,7 @@ const actions = {
         });
     });
   },
-  [CHECK_AUTH](context) {
+  [CHECK_AUTH]() {
     // if (JwtService.getToken()) {
     //   ApiService.setHeader();
     //   ApiService.get("user")
@@ -66,9 +103,9 @@ const actions = {
     // } else {)
     //   context.commit(PURGE_AUTH);
     // }
-    ApiService.get("mock/user").then(({ data }) => {
-      context.commit(SET_AUTH, data);
-    });
+    // ApiService.get("mock/user").then(({ data }) => {
+    //   context.commit(SET_AUTH, data);
+    // });
   },
   [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;

@@ -1,10 +1,10 @@
 <template>
-	<div>
-		<HlmHeader />
-		<HlmSidebar />
-		<router-view></router-view>
-		<HlmFooter />
-	</div>
+  <div>
+    <HlmHeader />
+    <HlmSidebar />
+    <router-view></router-view>
+    <HlmFooter />
+  </div>
 </template>
 <script>
 import HlmHeader from "@/components/Header";
@@ -13,10 +13,10 @@ import HlmFooter from "@/components/Footer";
 
 export default {
   name: "HlmAdmin",
-	components: {
-		HlmHeader,
-		HlmSidebar,
-		HlmFooter
-	}
-}
+  components: {
+    HlmHeader,
+    HlmSidebar,
+    HlmFooter
+  }
+};
 </script>
