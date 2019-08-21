@@ -21,4 +21,4 @@ yarn-error.log*
 *.sw*
 
 # package
-package.json
+package-lock.json

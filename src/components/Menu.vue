@@ -27,6 +27,9 @@ export default {
     module() {
       return this.dataMenu.module
     }
+  },
+  mounted() {
+    console.log(this.dataMenu);
   }
 };
 </script>

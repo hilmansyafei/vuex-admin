@@ -52,7 +52,6 @@ store.dispatch("getMenu").then(() => {
     Vue.use(Router);
 
     const childrens = generateMenu(store.getters.menus);
-
     let router = new Router({
       // mode: "history",
       routes: [
