@@ -27,10 +27,8 @@ const getters = {
 
 const actions = {
   getMenu(context) {
-    console.log("mulai jalan");
-    ApiService.get("mock/menu").then(data => {
+    return ApiService.get("mock/menu").then(data => {
       context.commit("setMenu", data.data);
-      console.log("selesai");
     });
   }
 };

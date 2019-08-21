@@ -13,22 +13,19 @@
           />
         </div>
         <div class="pull-left info">
-          <p>{{currentUser.name}}</p>
-          <a href="#">{{currentUser.role}}</a>
+          <p>{{ currentUser.name }}</p>
+          <a href="#">{{ currentUser.role }}</a>
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="">
+          <a href="#/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <Menu 
-          v-for="(menu, index) in menus"
-          :dataMenu="menu"
-          :key="index"/>
+        <menu v-for="(menu, index) in menus" :dataMenu="menu" :key="index" />
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -43,8 +40,8 @@ export default {
   components: {
     Menu
   },
-  computed : {
-    ...mapGetters(["menus","currentUser"])
+  computed: {
+    ...mapGetters(["menus", "currentUser"])
   }
 };
 </script>
