@@ -11,44 +11,7 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
   errors: null,
-  user: {
-    image: "hilmansyafei.png",
-    name: "Hilman Syafei",
-    position: "Software Engineer",
-    priviledge: [
-      {
-        access: [1, 2, 4],
-        menu: "data",
-        subMenu: "form-management"
-      },
-      {
-        access: [1, 2, 4],
-        menu: "data",
-        subMenu: "gudang-management"
-      },
-      {
-        access: [1, 2, 4],
-        menu: "data",
-        subMenu: "hilman-management"
-      },
-      {
-        access: [1, 2, 4],
-        menu: "data",
-        subMenu: "data-management"
-      },
-      {
-        access: [1, 2, 4],
-        menu: "report",
-        subMenu: "report-management"
-      },
-      {
-        access: [1, 2, 4],
-        menu: "baru",
-        subMenu: "baru-management"
-      }
-    ],
-    role: "Administrator"
-  },
+  user: {},
   isAuthenticated: !!JwtService.getToken()
 };
 
@@ -64,9 +27,10 @@ const getters = {
 const actions = {
   [LOGIN](context, credentials) {
     return new Promise(resolve => {
-      ApiService.post("users/login", { user: credentials })
+      ApiService.setHeader();
+      ApiService.post("mock/login", credentials)
         .then(({ data }) => {
-          context.commit(SET_AUTH, data.user);
+          context.commit(SET_AUTH, data);
           resolve(data);
         })
         .catch(({ response }) => {
@@ -90,22 +54,18 @@ const actions = {
         });
     });
   },
-  [CHECK_AUTH]() {
-    // if (JwtService.getToken()) {
-    //   ApiService.setHeader();
-    //   ApiService.get("user")
-    //     .then(({ data }) => {
-    //       context.commit(SET_AUTH, data.user);
-    //     })
-    //     .catch(({ response }) => {
-    //       context.commit(SET_ERROR, response.data.errors);
-    //     });
-    // } else {)
-    //   context.commit(PURGE_AUTH);
-    // }
-    // ApiService.get("mock/user").then(({ data }) => {
-    //   context.commit(SET_AUTH, data);
-    // });
+  [CHECK_AUTH](context) {
+    if (JwtService.getToken()) {
+      ApiService.get("mock/user")
+        .then(({ data }) => {
+          context.commit(SET_AUTH, data);
+        })
+        .catch(({ response }) => {
+          context.commit(SET_ERROR, response.data.errors);
+        });
+    } else {
+      context.commit(PURGE_AUTH);
+    }
   },
   [UPDATE_USER](context, payload) {
     const { email, username, password, image, bio } = payload;
@@ -138,7 +98,7 @@ const mutations = {
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;
-    //state.user = {};
+    state.user = {};
     state.errors = {};
     JwtService.destroyToken();
   }

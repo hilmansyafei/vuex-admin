@@ -25,7 +25,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <menu v-for="(menu, index) in menus" :dataMenu="menu" :key="index" />
+        <Menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -41,7 +41,7 @@ export default {
     Menu
   },
   computed: {
-    ...mapGetters(["menus", "currentUser"])
+    ...mapGetters(["accessMenu", "currentUser"])
   }
 };
 </script>

@@ -14,10 +14,10 @@ export default {
   methods: {
     setMenuActive: () => {
       var path = $(location).attr("href");
-      $(".treeview menu-open active").removeClass("active");
-      $(".treeview active menu-open").removeClass("menu-open");
-      $(".treeview active").removeClass("active");
-      $(".treeview menu-open").removeClass("menu-open");
+      // $(".treeview menu-open active").removeClass("active");
+      // $(".treeview active menu-open").removeClass("menu-open");
+      // $(".treeview active").removeClass("active");
+      // $(".treeview menu-open").removeClass("menu-open");
       $(".treeview-menu li")
         .parents()
         .removeClass("active");

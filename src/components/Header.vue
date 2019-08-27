@@ -41,7 +41,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" @click="logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -53,11 +53,19 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import { LOGOUT } from "@/store/actions.type";
 
 export default {
   name: "HlmHeader",
   computed: {
     ...mapGetters(["currentUser"])
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "login" });
+      });
+    }
   }
 };
 </script>

@@ -28,8 +28,8 @@ export default {
       return this.dataMenu.module
     }
   },
-  mounted() {
-    console.log(this.dataMenu);
+  mounted(){
+    
   }
 };
 </script>

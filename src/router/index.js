@@ -1,13 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
 import store from "@/store";
-import ApiService from "@/common/api.service";
 
-ApiService.init();
-store.dispatch("getMenu");
-let dataMenu = store.getters.menus;
-console.log("dipanggil");
-console.log(dataMenu);
+let dataMenu = store.getters.accessMenu;
 let routing = [
   {
     path: "",
@@ -42,6 +37,7 @@ export default new Router({
   routes: [
     {
       path: "/",
+      name: "",
       component: () => import("@/views/Admin"),
       children: generateMenu(dataMenu)
     },

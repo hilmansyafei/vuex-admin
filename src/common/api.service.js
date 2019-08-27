@@ -1,7 +1,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import JwtService from "@/common/jwt.service";
+//import JwtService from "@/common/jwt.service";
 import { API_URL } from "@/common/config";
 
 const ApiService = {
@@ -11,9 +11,7 @@ const ApiService = {
   },
 
   setHeader() {
-    Vue.axios.defaults.headers.common[
-      "Authorization"
-    ] = `Token ${JwtService.getToken()}`;
+    Vue.axios.defaults.headers["Content-Type"] = "application/json";
   },
 
   query(resource, params) {
@@ -29,6 +27,7 @@ const ApiService = {
   },
 
   post(resource, params) {
+    Vue.axios.defaults.headers.common["Content-Type"] = "application/json";
     return Vue.axios.post(`${resource}`, params);
   },
 

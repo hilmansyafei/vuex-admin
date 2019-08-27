@@ -4,19 +4,19 @@
 		<link rel="stylesheet" href="assets/custom.css">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href="../../index2.html"><b>Admin</b>LTE</a>
+				<a href="../../index2.html"><b>Canopus</b>UI</a>
 			</div>
 			<!-- /.login-logo -->
 			<div class="login-box-body">
 				<p class="login-box-msg">Sign in to start your session</p>
 
-				<form action="../../index2.html" method="post">
+				<form v-on:submit.prevent="onSubmit(username, password);" >
 					<div class="form-group has-feedback">
-						<input type="email" class="form-control" placeholder="Email">
+						<input v-model="username" class="form-control" placeholder="Username">
 						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="password" v-model="password" class="form-control" placeholder="Password">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="row">
@@ -55,7 +55,21 @@
   });
 </script>
 <script>
+import { LOGIN } from "@/store/actions.type";
 export default {
-	name: "Login"
+	name: "Login",
+	data() {
+		return {
+			username: null,
+			password: null
+		};
+	},
+	methods: {
+    onSubmit(username, password) {
+      this.$store
+        .dispatch(LOGIN, { username, password })
+        .then(() => this.$router.push({ name: "Dashboard" }));
+    }
+  },
 }
 </script>
