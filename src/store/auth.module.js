@@ -56,13 +56,17 @@ const actions = {
   },
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
-      ApiService.get("mock/user")
-        .then(({ data }) => {
-          context.commit(SET_AUTH, data);
-        })
-        .catch(({ response }) => {
-          context.commit(SET_ERROR, response.data.errors);
-        });
+      return new Promise((resolve, reject) => {
+        ApiService.get("mock/user")
+          .then(({ data }) => {
+            context.commit(SET_AUTH, data);
+            resolve(data);
+          })
+          .catch(({ response }) => {
+            context.commit(SET_ERROR, response.data.errors);
+            reject(response);
+          });
+      });
     } else {
       context.commit(PURGE_AUTH);
     }

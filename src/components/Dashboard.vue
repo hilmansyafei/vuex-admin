@@ -83,6 +83,9 @@
 </template>
 <script>
 export default {
-  name: "HlmDashboard"
+  name: "HlmDashboard",
+  mounted(){
+    //window.location.reload();
+  }
 };
 </script>

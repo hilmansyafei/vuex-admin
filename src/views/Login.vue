@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
+		<!-- <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css"> -->
 		<link rel="stylesheet" href="assets/custom.css">
 		<div class="login-box">
 			<div class="login-logo">
@@ -68,7 +68,9 @@ export default {
     onSubmit(username, password) {
       this.$store
         .dispatch(LOGIN, { username, password })
-        .then(() => this.$router.push({ name: "Dashboard" }));
+		.then(() =>{ 
+			window.location.href = "/";
+		});
     }
   },
 }

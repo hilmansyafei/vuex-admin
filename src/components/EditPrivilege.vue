@@ -50,7 +50,7 @@ export default {
 		MenuSetting
 	},
 	computed: {
-		...mapGetters(["allMenu", "currentUser"]),
+		...mapGetters(["allMenu"]),
     breadCrumbs() {
       return [
         {
@@ -67,7 +67,7 @@ export default {
     }
   },
   mounted() {
-		Pace.restart();
+    Pace.restart();
   }
 };
 </script>

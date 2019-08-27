@@ -1,4 +1,4 @@
-//import store from "@/store";
+import store from "@/store";
 import ApiService from "@/common/api.service";
 
 const state = {
@@ -76,23 +76,26 @@ const state = {
 
 const getters = {
   accessMenu(state) {
-    // let userPriviledge = store.getters.currentUser.priviledge;
-    // var menusGet = state.listMenu;
-    // return menusGet.filter(menu => {
-    //   if (userPriviledge.find(data => data.menu == menu.module) !== undefined) {
-    //     menu.subMenu = menu.subMenu.filter(submenu => {
-    //       if (
-    //         userPriviledge.find(
-    //           dataSubmenu => dataSubmenu.subMenu == submenu.path
-    //         ) !== undefined
-    //       ) {
-    //         return submenu;
-    //       }
-    //     });
-    //     return menu;
-    //   }
-    // });
-    return state.listMenu;
+    let userPriviledge = store.getters.currentUser.priviledge;
+    if (userPriviledge !== undefined) {
+      var menusGet = JSON.parse(JSON.stringify(state.listMenu));
+      return menusGet.filter(menu => {
+        if (
+          userPriviledge.find(data => data.menu == menu.module) !== undefined
+        ) {
+          menu.subMenu = menu.subMenu.filter(submenu => {
+            if (
+              userPriviledge.find(
+                dataSubmenu => dataSubmenu.subMenu == submenu.path
+              ) !== undefined
+            ) {
+              return submenu;
+            }
+          });
+          return menu;
+        }
+      });
+    }
   },
   allMenu(state) {
     return state.listMenu;

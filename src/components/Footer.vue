@@ -37,6 +37,11 @@ export default {
     $route() {
       this.setMenuActive();
     }
+  },
+  created() {
+    let ckeditor = document.createElement('script');    
+    ckeditor.setAttribute('src',"/assets/dist/js/adminlte.js");
+    document.head.appendChild(ckeditor);
   }
 };
 </script>

@@ -2,12 +2,13 @@ import Vue from "vue";
 import Router from "vue-router";
 import store from "@/store";
 
-let dataMenu = store.getters.accessMenu;
+let dataMenu = store.getters.allMenu;
 let routing = [
   {
     path: "",
     name: "Dashboard",
-    component: () => import("@/components/Dashboard")
+    component: () => import("@/components/Dashboard"),
+    meta: { reuse: false }
   },
   {
     path: "/404",
