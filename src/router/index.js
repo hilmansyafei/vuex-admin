@@ -7,13 +7,17 @@ let routing = [
   {
     path: "",
     name: "Dashboard",
-    component: () => import("@/components/Dashboard"),
-    meta: { reuse: false }
+    component: () => import("@/components/Dashboard")
   },
   {
     path: "/404",
     name: "404",
     component: () => import("@/components/Err404")
+  },
+  {
+    path: "settings/user-management/edit-user",
+    name: "editUser",
+    component: () => import("@/components/EditPrivilege")
   }
 ];
 

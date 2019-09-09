@@ -6,6 +6,8 @@
   </footer>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "HlmFooter",
   mounted() {
@@ -13,11 +15,9 @@ export default {
   },
   methods: {
     setMenuActive: () => {
-      var path = $(location).attr("href");
-      // $(".treeview menu-open active").removeClass("active");
-      // $(".treeview active menu-open").removeClass("menu-open");
-      // $(".treeview active").removeClass("active");
-      // $(".treeview menu-open").removeClass("menu-open");
+      let pathAll = $(location).attr('href');
+      let pathSplit = pathAll.split('/');
+      let path = pathSplit[3] + "/" + pathSplit[4] + "/" + pathSplit[5];
       $(".treeview-menu li")
         .parents()
         .removeClass("active");
@@ -38,10 +38,13 @@ export default {
       this.setMenuActive();
     }
   },
+  computed: {
+    ...mapGetters(["isLoadingUser"])
+  },
   created() {
-    let ckeditor = document.createElement('script');    
-    ckeditor.setAttribute('src',"/assets/dist/js/adminlte.js");
-    document.head.appendChild(ckeditor);
+    let adminLTE = document.createElement('script');    
+    adminLTE.setAttribute('src',"/assets/dist/js/adminlte.js");
+    document.body.appendChild(adminLTE);
   }
 };
 </script>

@@ -16,30 +16,33 @@ Vue.filter("date", DateFilter);
 Vue.filter("error", ErrorFilter);
 
 ApiService.init();
-
+store.dispatch("setMenu");
 // Ensure we checked auth before each page load.
 router.beforeEach((to, from, next) => {
-  Promise.all([store.dispatch(CHECK_AUTH)]).then(() => {
-    let allowAccess = ["/404", "/login", "/"];
-    let isAuth = store.getters.isAuthenticated;
+  let allowAccess = ["/404", "/login", "/"];
+  let isAuth = store.getters.isAuthenticated;
 
-    if (to.path != "/login" && !isAuth) {
-      next("/login");
-    } else if (isAuth && to.path == "/login") {
-      return (window.location.href = "/");
-    }
+  if (to.path != "/login" && !isAuth) {
+    next("/login");
+  } else if (isAuth && to.path == "/login") {
+    return (window.location.href = "/");
+  }
 
-    if (allowAccess.indexOf(to.path) == -1) {
-      let checkAccess = store.getters.currentUser.priviledge.filter(
-        priviledge =>
-          "/" + priviledge.menu + "/" + priviledge.subMenu == to.path
-      );
-      if (checkAccess.length == 0) {
-        return next("/404");
+  if (allowAccess.indexOf(to.path) == -1) {
+    let checkAccess = store.getters.currentUser.priviledge.filter(
+      priviledge => {
+        let path = to.path.split("/");
+        return (
+          "/" + priviledge.menu + "/" + priviledge.subMenu ==
+          "/" + path[1] + "/" + path[2]
+        );
       }
+    );
+    if (checkAccess.length == 0) {
+      return next("/404");
     }
-    next();
-  });
+  }
+  Promise.all([store.dispatch(CHECK_AUTH)]).then(next);
 });
 new Vue({
   router,

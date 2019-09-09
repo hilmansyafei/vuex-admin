@@ -8,7 +8,7 @@
     </a>
     <ul class="treeview-menu">
       <li v-for="(subMenu, index) in dataMenu.subMenu" :key="index">
-        <a :href="url + '/#/' + module + '/' + subMenu.path"><i class="fa fa-circle-o"></i> {{subMenu.name}}</a>
+        <router-link :to="'/' + module + '/'+ subMenu.path"><i class="fa fa-circle-o"></i> {{subMenu.name}}</router-link>
       </li>
     </ul>
   </li>
@@ -28,8 +28,6 @@ export default {
       return this.dataMenu.module
     }
   },
-  mounted(){
-    
-  }
+	mounted() {}
 };
 </script>

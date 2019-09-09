@@ -891,7 +891,7 @@ throw new Error('AdminLTE requires jQuery')
     if (!this.options.followLink || link.attr('href') === '#') {
       event.preventDefault();
     }
-
+    
     if (isOpen) {
       this.collapse(treeviewMenu, parentLi);
     } else {
@@ -917,7 +917,6 @@ throw new Error('AdminLTE requires jQuery')
 
   Tree.prototype.collapse = function (tree, parentLi) {
     var collapsedEvent = $.Event(Event.collapsed);
-
     //tree.find(Selector.open).removeClass(ClassName.open);
     parentLi.removeClass(ClassName.open);
     tree.slideUp(this.options.animationSpeed, function () {

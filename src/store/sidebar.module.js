@@ -1,77 +1,7 @@
 import store from "@/store";
-import ApiService from "@/common/api.service";
 
 const state = {
-  listMenu: [
-    {
-      name: "Data",
-      module: "data",
-      subMenu: [
-        {
-          path: "data-management",
-          name: "Data Management",
-          component: "MasterView"
-        },
-        {
-          path: "form-management",
-          name: "Form Management",
-          component: "Test"
-        },
-        {
-          path: "gudang-management",
-          name: "Gudang Management",
-          component: "MasterView"
-        },
-        {
-          path: "canopus-management",
-          name: "Canopus Management",
-          component: "MasterView"
-        },
-        {
-          path: "hilman-management",
-          name: "Hilman Management",
-          component: "MasterView"
-        }
-      ]
-    },
-    {
-      name: "Report",
-      module: "report",
-      subMenu: [
-        {
-          path: "report-management",
-          name: "Monthly Management",
-          component: "MasterView"
-        },
-        {
-          path: "daily-management",
-          name: "Daily Management",
-          component: "MasterView"
-        }
-      ]
-    },
-    {
-      name: "Settings",
-      module: "settings",
-      subMenu: [
-        {
-          path: "user-management",
-          name: "User Management",
-          component: "EditPrivilege"
-        },
-        {
-          path: "menu-management",
-          name: "Menu Management",
-          component: "MasterView"
-        },
-        {
-          path: "group-management",
-          name: "Group Management",
-          component: "MasterView"
-        }
-      ]
-    }
-  ]
+  listMenu: []
 };
 
 const getters = {
@@ -84,11 +14,11 @@ const getters = {
           userPriviledge.find(data => data.menu == menu.module) !== undefined
         ) {
           menu.subMenu = menu.subMenu.filter(submenu => {
-            if (
-              userPriviledge.find(
-                dataSubmenu => dataSubmenu.subMenu == submenu.path
-              ) !== undefined
-            ) {
+            let checkPriv = userPriviledge.find(
+              dataSubmenu => dataSubmenu.subMenu == submenu.path
+            );
+            if (checkPriv !== undefined) {
+              submenu.access = checkPriv.access;
               return submenu;
             }
           });
@@ -103,13 +33,78 @@ const getters = {
 };
 
 const actions = {
-  getMenu(context) {
-    return new Promise(resolve => {
-      ApiService.get("mock/menu").then(({ data }) => {
-        context.commit("setMenu", data);
-        resolve(data);
-      });
-    });
+  setMenu(context) {
+    let listMenu = [
+      {
+        name: "Data",
+        module: "data",
+        subMenu: [
+          {
+            path: "data-management",
+            name: "Data Management",
+            component: "MasterView"
+          },
+          {
+            path: "form-management",
+            name: "Form Management",
+            component: "Test"
+          },
+          {
+            path: "gudang-management",
+            name: "Gudang Management",
+            component: "MasterView2"
+          },
+          {
+            path: "canopus-management",
+            name: "Canopus Management",
+            component: "MasterView"
+          },
+          {
+            path: "hilman-management",
+            name: "Hilman Management",
+            component: "MasterView"
+          }
+        ]
+      },
+      {
+        name: "Report",
+        module: "report",
+        subMenu: [
+          {
+            path: "report-management",
+            name: "Monthly Management",
+            component: "MasterView"
+          },
+          {
+            path: "daily-management",
+            name: "Daily Management",
+            component: "MasterView"
+          }
+        ]
+      },
+      {
+        name: "Settings",
+        module: "settings",
+        subMenu: [
+          {
+            path: "user-management",
+            name: "User Management",
+            component: "UserManagement"
+          },
+          {
+            path: "menu-management",
+            name: "Menu Management",
+            component: "MasterView"
+          },
+          {
+            path: "group-management",
+            name: "Group Management",
+            component: "MasterView"
+          }
+        ]
+      }
+    ];
+    context.commit("setMenu", listMenu);
   }
 };
 

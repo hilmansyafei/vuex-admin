@@ -11,6 +11,7 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 
 const state = {
   errors: null,
+  isLoadingUser: true,
   user: {},
   isAuthenticated: !!JwtService.getToken()
 };
@@ -21,12 +22,15 @@ const getters = {
   },
   isAuthenticated(state) {
     return state.isAuthenticated;
+  },
+  isLoadingUser(state) {
+    return state.isLoadingUser;
   }
 };
 
 const actions = {
   [LOGIN](context, credentials) {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       ApiService.setHeader();
       ApiService.post("mock/login", credentials)
         .then(({ data }) => {
@@ -34,6 +38,7 @@ const actions = {
           resolve(data);
         })
         .catch(({ response }) => {
+          reject(response);
           context.commit(SET_ERROR, response.data.errors);
         });
     });
@@ -55,19 +60,23 @@ const actions = {
     });
   },
   [CHECK_AUTH](context) {
-    if (JwtService.getToken()) {
-      return new Promise((resolve, reject) => {
-        ApiService.get("mock/user")
-          .then(({ data }) => {
-            context.commit(SET_AUTH, data);
-            resolve(data);
-          })
-          .catch(({ response }) => {
-            context.commit(SET_ERROR, response.data.errors);
-            reject(response);
-          });
-      });
-    } else {
+    // if (JwtService.getToken()) {
+    //   return new Promise((resolve, reject) => {
+    //     ApiService.get("mock/user")
+    //       .then(({ data }) => {
+    //         context.commit(SET_AUTH, data);
+    //         context.commit("setLoadingUser", false);
+    //         resolve(data);
+    //       })
+    //       .catch(({ response }) => {
+    //         context.commit(SET_ERROR, response.data.errors);
+    //         reject(response);
+    //       });
+    //   });
+    // } else {
+    //   context.commit(PURGE_AUTH);
+    // }
+    if (!JwtService.getToken()) {
       context.commit(PURGE_AUTH);
     }
   },
@@ -99,6 +108,9 @@ const mutations = {
     state.user = user;
     state.errors = {};
     JwtService.saveToken(state.user.token);
+  },
+  setLoadingUser(state, loading) {
+    state.isLoadingUser = loading;
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;

@@ -18,14 +18,21 @@
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
-        <li>
-          <a href="#/">
+      <ul v-if="!isLoadingUser" class="sidebar-menu" data-widget="tree">
+        <li class="header">Main Menu</li>
+        <li class="treeview" v-on:click="moveToDashboard">
+          <router-link href="" to="/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </a>
+          </router-link>
         </li>
         <Menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
+        <li class="header">Action</li>
+        <li>
+          <a href="#" @click="logout">
+            <i class="fa fa-circle-o text-red"></i> 
+            <span>Logout</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -34,6 +41,7 @@
 <script>
 import Menu from "./Menu";
 import { mapGetters } from "vuex";
+import { BASE_URL } from "@/common/config";
 
 export default {
   name: "HlmSidebar",
@@ -41,7 +49,23 @@ export default {
     Menu
   },
   computed: {
-    ...mapGetters(["accessMenu", "currentUser"])
+    ...mapGetters(["accessMenu", "currentUser","isLoadingUser"])
+  },
+  mounted() {
+    $("#full-load").hide();
+  },
+  methods: {
+    moveToDashboard(){
+      this.$router.push({name: "Dashboard"});
+    },
+    logout() {
+      $("#full-load").show();
+      this.$store.dispatch("logout").then(() => {
+        setTimeout(function(){ 
+          window.location.href = BASE_URL;
+        }, 1000);
+      });
+    }
   }
 };
 </script>

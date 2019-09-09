@@ -34,7 +34,8 @@
                   class="img-circle"
                   alt="User Image"
                 />
-                <p>{{currentUser.name}} - {{currentUser.position}}</p>
+                <p>{{currentUser.name}}</p>
+                <p><small>{{currentUser.position}}</small></p>
               </li>
               <li class="user-footer">
                 <div class="pull-left">
@@ -54,6 +55,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
+import { BASE_URL } from "@/common/config";
 
 export default {
   name: "HlmHeader",
@@ -62,8 +64,11 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch(LOGOUT).then(() => {
-        this.$router.push({ name: "login" });
+      $("#full-load").show();
+      this.$store.dispatch("logout").then(() => {
+        setTimeout(function(){ 
+          window.location.href = BASE_URL;
+        }, 500);
       });
     }
   }

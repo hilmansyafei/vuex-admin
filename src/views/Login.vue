@@ -1,13 +1,16 @@
+<style scoped>
+.lds-ellipsis div {
+  background: #3c8dbc;
+}
+</style>
 <template>
 	<div>
-		<!-- <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css"> -->
-		<link rel="stylesheet" href="assets/custom.css">
 		<div class="login-box">
-			<div class="login-logo">
+			<div class="login-logo animated fadeInUp">
 				<a href="../../index2.html"><b>Canopus</b>UI</a>
 			</div>
 			<!-- /.login-logo -->
-			<div class="login-box-body">
+			<div class="login-box-body animated fadeInUp">
 				<p class="login-box-msg">Sign in to start your session</p>
 
 				<form v-on:submit.prevent="onSubmit(username, password);" >
@@ -29,31 +32,21 @@
 						</div>
 						<!-- /.col -->
 						<div class="col-xs-4">
-							<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+							<button id="login" type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+							<!-- <div id="login-loading" class="lds-ring" style="display:none"><div></div><div></div><div></div><div></div></div> -->
+							<div id="login-loading" style="display:none" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 						</div>
 						<!-- /.col -->
 					</div>
 				</form>
 
 				<a href="#">I forgot my password</a><br>
-				<a href="register.html" class="text-center">Register a new membership</a>
 
 			</div>
 			<!-- /.login-box-body -->
 		</div>
 	</div>
 </template>
-<!-- iCheck -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
 <script>
 import { LOGIN } from "@/store/actions.type";
 export default {
@@ -66,12 +59,17 @@ export default {
 	},
 	methods: {
     onSubmit(username, password) {
-      this.$store
-        .dispatch(LOGIN, { username, password })
-		.then(() =>{ 
-			window.location.href = "/";
-		});
+			$("#login").hide();
+			$("#login-loading").show();
+			this.$store
+				.dispatch(LOGIN, { username, password })
+				.then(() =>{ 
+				window.location.href = "/";
+			}).catch(() => {
+				$("#login").show();
+				$("#login-loading").hide();
+			});
     }
-  },
+	}
 }
 </script>
