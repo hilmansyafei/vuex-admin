@@ -20,22 +20,22 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img
-                :src="'assets/dist/img/' + currentUser.image"
+                :src="'assets/dist/img/' + currentUser.foto"
                 class="user-image"
                 alt="User Image"
               />
-              <span class="hidden-xs">Hilman Syafei</span>
+              <span class="hidden-xs">{{currentUser.fullName}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img
-                  :src="'assets/dist/img/' + currentUser.image"
+                  :src="'assets/dist/img/' + currentUser.foto"
                   class="img-circle"
                   alt="User Image"
                 />
-                <p>{{currentUser.name}}</p>
-                <p><small>{{currentUser.position}}</small></p>
+                <p>{{currentUser.fullName}}</p>
+                <p><small>{{currentUser.group}}</small></p>
               </li>
               <li class="user-footer">
                 <div class="pull-left">
@@ -65,7 +65,7 @@ export default {
   methods: {
     logout() {
       $("#full-load").show();
-      this.$store.dispatch("logout").then(() => {
+      this.$store.dispatch(LOGOUT).then(() => {
         setTimeout(function(){ 
           window.location.href = BASE_URL;
         }, 500);

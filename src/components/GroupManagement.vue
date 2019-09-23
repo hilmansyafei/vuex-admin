@@ -87,7 +87,6 @@ export default {
     }
   },
   mounted() {
-    Pace.restart();
     this.addBlueHeader();
     this.dataTable();
   }

@@ -24,6 +24,9 @@ const actions = {
         resolve(data);
       });
     });
+  },
+  cleanDashboard(context){
+    context.commit("cleanDashboard");
   }
 };
 
@@ -34,6 +37,10 @@ const mutations = {
   },
   setLoadingDashboard(state, status) {
     state.isLoadingDashboard = status;
+  },
+  cleanDashboard(state) {
+    state.dashboard = {};
+    state.isLoadingDashboard = true;
   }
 };
 

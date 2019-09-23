@@ -7,14 +7,14 @@
       <div class="user-panel">
         <div class="pull-left image">
           <img
-            :src="'assets/dist/img/' + currentUser.image"
+            :src="'assets/dist/img/' + currentUser.foto"
             class="img-circle"
             alt="User Image"
           />
         </div>
         <div class="pull-left info">
-          <p>{{ currentUser.name }}</p>
-          <a href="#">{{ currentUser.role }}</a>
+          <p>{{ currentUser.fullName }}</p>
+          <a href="#">{{ currentUser.group }}</a>
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->

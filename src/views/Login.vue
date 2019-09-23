@@ -12,6 +12,9 @@
 			<!-- /.login-logo -->
 			<div class="login-box-body animated fadeInUp">
 				<p class="login-box-msg">Sign in to start your session</p>
+				<div v-if="isLoginError" class="alert alert-warning alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<strong>Warning!</strong> {{messageErrorLogin}} </div>
 
 				<form v-on:submit.prevent="onSubmit(username, password);" >
 					<div class="form-group has-feedback">
@@ -49,6 +52,8 @@
 </template>
 <script>
 import { LOGIN } from "@/store/actions.type";
+import { mapGetters } from "vuex";
+
 export default {
 	name: "Login",
 	data() {
@@ -70,6 +75,9 @@ export default {
 				$("#login-loading").hide();
 			});
     }
-	}
+	},
+	computed: {
+    ...mapGetters(["messageErrorLogin","isLoginError"])
+  },
 }
 </script>

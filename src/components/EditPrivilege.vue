@@ -14,7 +14,7 @@
             <div class="box-header"><h3 class="box-title">User</h3></div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form role="form" class="form-horizontal" action="http://35.247.175.95/kobe/settings/userManagement/save.editUser/1.1" method="POST" enctype="multipart/form-data">
+              <form role="form" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
             
                 <input name="idParam" type="hidden" value="1">
                 <div class="box-body">

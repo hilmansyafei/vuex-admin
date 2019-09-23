@@ -54,7 +54,7 @@ export default {
     addBlueHeader() {
       $(".table th").addClass("bg-blue");
     },
-    dataTable() {
+    table() {
       let table = $('#example2').DataTable({
         "scrollX": true,
         "paging": true,
@@ -66,8 +66,15 @@ export default {
         "processing": true,
         "serverSide": true,
         "ajax":{
-            url :'https://almock.sumpahpalapa.com/canopus-ui/mock/user_datatables', // json datasource
-            type: "GET",  // method  , by default get
+            url: 'http://localhost:1322/userManagement',
+            type: "GET",  // method  , by default get,
+            dataFilter: function(reps) {
+              console.log(reps)
+              return reps;
+            },
+            error:function(err){
+              console.log(err);
+            }
         },
         "columnDefs": [ {
           "targets": -1,
@@ -75,10 +82,10 @@ export default {
           "defaultContent": "<a style='margin:1px' class='btn btn-success' href='/#/settings/user-management/edit-user' title='edit' data-id='1'><span class='fa fa-pencil'></span></a>"
         } ]
       });
-      $('#example2 tbody').on( 'click', 'button', function () {
-        var data = table.row( $(this).parents('tr') ).data();
-        alert( data[0] +"'s salary is: "+ data[ 2 ] );
-      });
+      // $('#example2 tbody').on( 'click', 'button', function () {
+      //   var data = table.row( $(this).parents('tr') ).data();
+      //   alert( data[0] +"'s salary is: "+ data[ 2 ] );
+      // });
 
     }
   },
@@ -104,7 +111,7 @@ export default {
   },
   mounted() {
     this.addBlueHeader();
-    this.dataTable();
+    this.table();
   }
 };
 </script>

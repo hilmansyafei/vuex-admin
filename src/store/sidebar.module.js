@@ -6,19 +6,19 @@ const state = {
 
 const getters = {
   accessMenu(state) {
-    let userPriviledge = store.getters.currentUser.priviledge;
+    let userPriviledge = store.getters.currentUser.privilege;
     if (userPriviledge !== undefined) {
       var menusGet = JSON.parse(JSON.stringify(state.listMenu));
       return menusGet.filter(menu => {
         if (
-          userPriviledge.find(data => data.menu == menu.module) !== undefined
+          userPriviledge.find(data => data.module == menu.module) !== undefined
         ) {
           menu.subMenu = menu.subMenu.filter(submenu => {
             let checkPriv = userPriviledge.find(
-              dataSubmenu => dataSubmenu.subMenu == submenu.path
+              dataSubmenu => dataSubmenu.idSubMenu == submenu._id
             );
             if (checkPriv !== undefined) {
-              submenu.access = checkPriv.access;
+              submenu.access = checkPriv.grantAccess;
               return submenu;
             }
           });
@@ -34,72 +34,100 @@ const getters = {
 
 const actions = {
   setMenu(context) {
+    // let OldlistMenu = [
+    //   {
+    //     name: "Data",
+    //     module: "data",
+    //     subMenu: [
+    //       {
+    //         path: "data-management",
+    //         name: "Data Management",
+    //         component: "MasterView"
+    //       },
+    //       {
+    //         path: "form-management",
+    //         name: "Form Management",
+    //         component: "Test"
+    //       },
+    //       {
+    //         path: "gudang-management",
+    //         name: "Gudang Management",
+    //         component: "MasterView2"
+    //       },
+    //       {
+    //         path: "canopus-management",
+    //         name: "Canopus Management",
+    //         component: "MasterView"
+    //       },
+    //       {
+    //         path: "hilman-management",
+    //         name: "Hilman Management",
+    //         component: "MasterView"
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "Report",
+    //     module: "report",
+    //     subMenu: [
+    //       {
+    //         path: "report-management",
+    //         name: "Monthly Management",
+    //         component: "MasterView"
+    //       },
+    //       {
+    //         path: "daily-management",
+    //         name: "Daily Management",
+    //         component: "MasterView"
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     name: "Settings",
+    //     module: "settings",
+    //     subMenu: [
+    //       {
+    //         path: "user-management",
+    //         name: "User Management",
+    //         component: "UserManagement"
+    //       },
+    //       {
+    //         path: "menu-management",
+    //         name: "Menu Management",
+    //         component: "MasterView"
+    //       },
+    //       {
+    //         path: "group-management",
+    //         name: "Group Management",
+    //         component: "MasterView"
+    //       }
+    //     ]
+    //   }
+    // ];
+
     let listMenu = [
       {
-        name: "Data",
-        module: "data",
-        subMenu: [
-          {
-            path: "data-management",
-            name: "Data Management",
-            component: "MasterView"
-          },
-          {
-            path: "form-management",
-            name: "Form Management",
-            component: "Test"
-          },
-          {
-            path: "gudang-management",
-            name: "Gudang Management",
-            component: "MasterView2"
-          },
-          {
-            path: "canopus-management",
-            name: "Canopus Management",
-            component: "MasterView"
-          },
-          {
-            path: "hilman-management",
-            name: "Hilman Management",
-            component: "MasterView"
-          }
-        ]
-      },
-      {
-        name: "Report",
-        module: "report",
-        subMenu: [
-          {
-            path: "report-management",
-            name: "Monthly Management",
-            component: "MasterView"
-          },
-          {
-            path: "daily-management",
-            name: "Daily Management",
-            component: "MasterView"
-          }
-        ]
-      },
-      {
+        _id: "5d7b3a29837e7f3994f603e4",
         name: "Settings",
         module: "settings",
         subMenu: [
           {
-            path: "user-management",
+            _id: "5d7b3aea837e7f3a3840e85b",
             name: "User Management",
+            path: "user-management",
             component: "UserManagement"
           },
           {
-            path: "menu-management",
+            _id: "5d7b3af5837e7f3a3840e85c",
             name: "Menu Management",
-            component: "MasterView"
+            path: "menu-management",
+            component: "MenuManagement"
           },
           {
-            path: "group-management",
+            _id: "5d7b3b02837e7f3a3840e85d",
             name: "Group Management",
-            component: "MasterView"
+            path: "group-management",
+            component: "GroupManagement"
           }
         ]
       }

@@ -89,9 +89,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "HlmDashboard",
   mounted(){
-    this.$store
-    .dispatch("getDashboard")
-    .catch(() => {});
+    // this.$store
+    // .dispatch("getDashboard")
+    // .catch(() => {});
   },
   computed: {
     ...mapGetters(["isLoadingDashboard"])

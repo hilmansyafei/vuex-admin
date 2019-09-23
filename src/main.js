@@ -29,15 +29,13 @@ router.beforeEach((to, from, next) => {
   }
 
   if (allowAccess.indexOf(to.path) == -1) {
-    let checkAccess = store.getters.currentUser.priviledge.filter(
-      priviledge => {
-        let path = to.path.split("/");
-        return (
-          "/" + priviledge.menu + "/" + priviledge.subMenu ==
-          "/" + path[1] + "/" + path[2]
-        );
-      }
-    );
+    let checkAccess = store.getters.currentUser.privilege.filter(priviledge => {
+      let path = to.path.split("/");
+      return (
+        "/" + priviledge.module + "/" + priviledge.path ==
+        "/" + path[1] + "/" + path[2]
+      );
+    });
     if (checkAccess.length == 0) {
       return next("/404");
     }

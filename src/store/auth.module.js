@@ -1,5 +1,6 @@
 import ApiService from "@/common/api.service";
 import JwtService from "@/common/jwt.service";
+import store from "@/store";
 import {
   LOGIN,
   LOGOUT,
@@ -8,12 +9,16 @@ import {
   UPDATE_USER
 } from "./actions.type";
 import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
+//import { StringDecoder } from "string_decoder";
 
 const state = {
   errors: null,
   isLoadingUser: true,
   user: {},
-  isAuthenticated: !!JwtService.getToken()
+  isAuthenticated: !!JwtService.getToken(),
+  isLoginError: false,
+  messageErrorLogin: "",
+  testData: []
 };
 
 const getters = {
@@ -25,21 +30,34 @@ const getters = {
   },
   isLoadingUser(state) {
     return state.isLoadingUser;
+  },
+  testData(state) {
+    return state.testData;
+  },
+  messageErrorLogin(state) {
+    return state.messageErrorLogin;
+  },
+  isLoginError(state) {
+    return state.isLoginError;
   }
 };
 
 const actions = {
   [LOGIN](context, credentials) {
+    context.commit("setIsLoginError", false);
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("mock/login", credentials)
+      ApiService.post("login", credentials)
         .then(({ data }) => {
-          context.commit(SET_AUTH, data);
+          context.commit("deleteData");
+          context.dispatch("setTestData", "hilman");
+          context.commit(SET_AUTH, data.data);
           resolve(data);
         })
         .catch(({ response }) => {
           reject(response);
-          context.commit(SET_ERROR, response.data.errors);
+          context.commit("setIsLoginError", true);
+          context.commit(SET_ERROR, response.data.data);
         });
     });
   },
@@ -91,17 +109,39 @@ const actions = {
     if (password) {
       user.password = password;
     }
-
     return ApiService.put("user", user).then(({ data }) => {
       context.commit(SET_AUTH, data.user);
       return data;
     });
+  },
+  setTestData(context, data) {
+    let en = context.dispatch("encryptData", data);
+    console.log(en);
+    en.then(() => {
+      console.log(en);
+      context.commit("setTestData", en);
+    });
+  },
+  encryptData(context, payload) {
+    let result = [];
+    let passcode = "12345678";
+    let passLen = passcode.length;
+    let content = JSON.stringify(payload);
+    for (var i = 0; i < content.length; i++) {
+      let passOffset = i % passLen;
+      let calAscii = content.charCodeAt(i) + passcode.charCodeAt(passOffset);
+      result.push(calAscii);
+    }
+    return JSON.stringify(result);
+  },
+  dencryptData(context, payload) {
+    return JSON.stringify(payload);
   }
 };
 
 const mutations = {
   [SET_ERROR](state, error) {
-    state.errors = error;
+    state.messageErrorLogin = error;
   },
   [SET_AUTH](state, user) {
     state.isAuthenticated = true;
@@ -117,6 +157,19 @@ const mutations = {
     state.user = {};
     state.errors = {};
     JwtService.destroyToken();
+    store.dispatch("cleanDashboard");
+  },
+  setTestData(state, data) {
+    state.testData = data;
+  },
+  deleteData(state) {
+    state.testData = [];
+  },
+  setMessageErrorLogin(state) {
+    state.messageErrorLogin = state;
+  },
+  setIsLoginError(state, status) {
+    state.isLoginError = status;
   }
 };
 
