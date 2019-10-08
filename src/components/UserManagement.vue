@@ -9,6 +9,39 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
+        <div class="col-md-5">
+          <!-- general form elements -->
+          <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Search Parameter</h3>
+            </div>
+            <!-- /.box-header -->
+              <form v-on:submit.prevent="onSubmit(username, fullName);">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Username</label>
+                  <div class="col-sm-9">
+                    <input v-model="username" type="text" id="username" class="form-control" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="" class="col-sm-3 control-label">Full Name</label>
+                  <div class="col-sm-9">
+                    <input v-model="fullName" type="text" id="fullName" class="form-control" value="">
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" >Search</button>
+              </div>
+              </form>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12">
           <div class="box box-primary box-solid">
             <div class="box-header"><h3 class="box-title">User Management</h3></div>
@@ -47,6 +80,12 @@ import Breadcrumb from "./Breadcrm";
 
 export default {
   name: "UserManagement",
+  data() {
+		return {
+			username: null,
+			fullName: null
+		};
+	},
   components: {
     Breadcrumb
   },
@@ -54,7 +93,7 @@ export default {
     addBlueHeader() {
       $(".table th").addClass("bg-blue");
     },
-    table() {
+    table(searchVal = {username:"", fullName:""}) {
       let table = $('#example2').DataTable({
         "scrollX": true,
         "paging": true,
@@ -65,28 +104,46 @@ export default {
         "autoWidth": false,
         "processing": true,
         "serverSide": true,
+        "destroy":true,
         "ajax":{
             url: 'http://localhost:1322/userManagement',
             type: "GET",  // method  , by default get,
-            dataFilter: function(reps) {
-              console.log(reps)
-              return reps;
+            "initComplete":function( settings, json){
+            console.log(json);
+            return json;
+            // call your function here
             },
-            error:function(err){
-              console.log(err);
-            }
+            data: {
+              username: searchVal.username,
+              fullName: searchVal.fullName
+            },
         },
         "columnDefs": [ {
           "targets": -1,
           "data": null,
           "defaultContent": "<a style='margin:1px' class='btn btn-success' href='/#/settings/user-management/edit-user' title='edit' data-id='1'><span class='fa fa-pencil'></span></a>"
-        } ]
+        },
+        {
+          "targets": 4,
+          render: function(data, type, row, meta) {
+            let status = {"0": "Tidak Aktif","1":"Aktif"}
+            return status[row[4]];
+          }
+        }
+        ]
       });
       // $('#example2 tbody').on( 'click', 'button', function () {
       //   var data = table.row( $(this).parents('tr') ).data();
       //   alert( data[0] +"'s salary is: "+ data[ 2 ] );
       // });
 
+    },
+    onSubmit(username, fullName) {
+      let searchVal = {
+        "username": username,
+        "fullName": fullName
+      }
+      this.table(searchVal);
     }
   },
   computed: {

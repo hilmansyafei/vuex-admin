@@ -49,8 +49,6 @@ const actions = {
       ApiService.setHeader();
       ApiService.post("login", credentials)
         .then(({ data }) => {
-          context.commit("deleteData");
-          context.dispatch("setTestData", "hilman");
           context.commit(SET_AUTH, data.data);
           resolve(data);
         })
@@ -116,9 +114,7 @@ const actions = {
   },
   setTestData(context, data) {
     let en = context.dispatch("encryptData", data);
-    console.log(en);
     en.then(() => {
-      console.log(en);
       context.commit("setTestData", en);
     });
   },

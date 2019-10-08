@@ -18,7 +18,7 @@
         </div>
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul v-if="!isLoadingUser" class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main Menu</li>
         <li class="treeview" v-on:click="moveToDashboard">
           <router-link href="" to="/">
