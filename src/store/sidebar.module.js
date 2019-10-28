@@ -43,19 +43,19 @@ const actions = {
           {
             _id: "5d7b3aea837e7f3a3840e85b",
             name: "User Management",
-            path: "user-management",
+            path: "userManagement",
             component: "UserManagement"
           },
           {
             _id: "5d7b3af5837e7f3a3840e85c",
             name: "Menu Management",
-            path: "menu-management",
+            path: "menuManagement",
             component: "MenuManagement"
           },
           {
             _id: "5d7b3b02837e7f3a3840e85d",
             name: "Group Management",
-            path: "group-management",
+            path: "groupManagement",
             component: "GroupManagement"
           }
         ]
