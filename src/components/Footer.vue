@@ -21,9 +21,9 @@ export default {
       $(".treeview-menu li")
         .parents()
         .removeClass("active");
-      $("li a")
-        .parents()
-        .removeClass("active");
+      // $("li a")
+      //   .parents()
+      //   .removeClass("active");
       // Will only work if string in href matches with location
       $(".treeview-menu li a[href='" + path + "']")
         .parents()

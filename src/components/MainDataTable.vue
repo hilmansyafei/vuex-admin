@@ -1,6 +1,7 @@
 <template>
   <div id="maindatatable">
-    <DataTableComponent :comments="filteredComments"></DataTableComponent>
+    <!-- <DataTableComponent :comments="filteredComments"></DataTableComponent> -->
+    <table class="table table-bordered table-hover table-striped"></table>
   </div>
 </template>
 
@@ -14,7 +15,10 @@ export default {
   data() {
     return {
       comments: [],
-      search: ""
+      search: "",
+      headers: [{ title: "Name" }, { title: "Email" }, { title: "Body" }],
+      rows: [],
+      dtHandle: null
     };
   },
   computed: {
@@ -32,12 +36,54 @@ export default {
   },
   mounted() {
     let vm = this;
-    $.ajax({
-      url: "https://jsonplaceholder.typicode.com/comments",
-      success(res) {
-        vm.comments = res;
+    vm.dtHandle = $(".table").DataTable({
+      columns: vm.headers,
+      //data: vm.rows,
+      searching: true,
+      paging: true,
+      info: false,
+      destroy: true,
+      // serverSide: true,
+      ajax: {
+        url: "https://jsonplaceholder.typicode.com/comments",
+        type: "GET", // method  , by default get,
+        success(res) {
+          console.log("jalan");
+          vm.rows = [];
+          res.forEach(function(item) {
+            let row = [];
+            row.push(item.name);
+            row.push(
+              '<a href="mailto://' + item.email + '">' + item.email + "</a>"
+            );
+            row.push(item.body);
+            vm.rows.push(row);
+          });
+          vm.dtHandle.clear();
+          vm.dtHandle.rows.add(vm.rows);
+          vm.dtHandle.draw();
+        }
       }
     });
+    // $.ajax({
+    //   url: "https://jsonplaceholder.typicode.com/comments",
+    //   success(res) {
+    //     console.log("jalan");
+    //     vm.rows = [];
+    //     res.forEach(function(item) {
+    //       let row = [];
+    //       row.push(item.name);
+    //       row.push(
+    //         '<a href="mailto://' + item.email + '">' + item.email + "</a>"
+    //       );
+    //       row.push(item.body);
+    //       vm.rows.push(row);
+    //     });
+    //     vm.dtHandle.clear();
+    //     vm.dtHandle.rows.add(vm.rows);
+    //     vm.dtHandle.draw();
+    //   }
+    // });
   }
 };
 </script>
