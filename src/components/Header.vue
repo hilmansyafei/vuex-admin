@@ -1,55 +1,125 @@
 <template>
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>C</b>UI</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Canopus UI</b> [v2]</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button -->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img
-                :src="'assets/dist/img/' + currentUser.foto"
-                class="user-image"
-                alt="User Image"
-              />
-              <span class="hidden-xs">{{currentUser.fullName}}</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img
-                  :src="'assets/dist/img/' + currentUser.foto"
-                  class="img-circle"
-                  alt="User Image"
-                />
-                <p>{{currentUser.fullName}}</p>
-                <p><small>{{currentUser.group}}</small></p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" @click="logout" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
+  <header
+    class="m-grid__item m-header"
+    data-minimize-offset="200"
+    data-minimize-mobile-offset="200"
+  >
+    <div class="m-container m-container--fluid m-container--full-height">
+      <div class="m-stack m-stack--ver m-stack--desktop">
+        <!-- BEGIN: Brand -->
+        <div class="m-stack__item m-brand  m-brand--skin-dark ">
+          <div class="m-stack m-stack--ver m-stack--general">
+            <div class="m-stack__item m-stack__item--middle m-brand__logo">
+              <a href="index.html" class="m-brand__logo-wrapper">
+                <img alt="" src="img/logo-canopus.png" />
+              </a>
+            </div>
+            <div class="m-stack__item m-stack__item--middle m-brand__tools">
+              <!-- BEGIN: Left Aside Minimize Toggle -->
+              <a
+                href="javascript:;"
+                id="m_aside_left_minimize_toggle"
+                class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block"
+              >
+                <span></span>
+              </a>
+              <!-- END -->
+              <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+              <a
+                href="javascript:;"
+                id="m_aside_left_offcanvas_toggle"
+                class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block"
+              >
+                <span></span>
+              </a>
+              <!-- END -->
+              <!-- BEGIN: Responsive Header Menu Toggler -->
+              <a
+                id="m_aside_header_menu_mobile_toggle"
+                href="javascript:;"
+                class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block"
+              >
+                <span></span>
+              </a>
+              <!-- END -->
+              <!-- BEGIN: Topbar Toggler -->
+              <a
+                id="m_aside_header_topbar_mobile_toggle"
+                href="javascript:;"
+                class="m-brand__icon m--visible-tablet-and-mobile-inline-block"
+              >
+                <i class="flaticon-more"></i>
+              </a>
+              <!-- BEGIN: Topbar Toggler -->
+            </div>
+          </div>
+        </div>
+        <!-- END: Brand -->
+        <div
+          class="m-stack__item m-stack__item--fluid m-header-head"
+          id="m_header_nav"
+        >
+          <!-- BEGIN: Topbar -->
+          <div
+            id="m_header_topbar"
+            class="m-topbar  m-stack m-stack--ver m-stack--general"
+          >
+            <div class="m-stack__item m-topbar__nav-wrapper">
+              <ul class="m-topbar__nav m-nav m-nav--inline">
+                <li
+                  class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+                  data-dropdown-toggle="click"
+                >
+                  <a href="#" class="m-nav__link m-dropdown__toggle">
+                    <span class="m-topbar__userpic">
+                      <img
+                        src="assets/app/media/img/users/user4.jpg"
+                        class="m--img-rounded m--marginless m--img-centered"
+                        alt=""
+                      />
+                    </span>
+                    <span class="m-topbar__username m--hide"> Nick </span>
+                  </a>
+                  <div class="m-dropdown__wrapper">
+                    <span
+                      class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"
+                    ></span>
+                    <div class="m-dropdown__inner">
+                      <div
+                        class="m-dropdown__header m--align-center"
+                        style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;"
+                      >
+                        <div class="m-card-user m-card-user--skin-dark">
+                          <div class="m-card-user__pic">
+                            <img
+                              src="assets/app/media/img/users/user4.jpg"
+                              class="m--img-rounded m--marginless"
+                              alt=""
+                            />
+                          </div>
+                          <div class="m-card-user__details">
+                            <span class="m-card-user__name m--font-weight-500">
+                              Mark Andre
+                            </span>
+                            <a
+                              href=""
+                              class="m-card-user__email m--font-weight-300 m-link"
+                            >
+                              mark.andre@gmail.com
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- END: Topbar -->
+        </div>
       </div>
-    </nav>
+    </div>
   </header>
 </template>
 <script>
@@ -66,7 +136,7 @@ export default {
     logout() {
       $("#full-load").show();
       this.$store.dispatch(LOGOUT).then(() => {
-        setTimeout(function(){ 
+        setTimeout(function() {
           window.location.href = BASE_URL;
         }, 500);
       });

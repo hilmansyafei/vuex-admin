@@ -114,3 +114,7 @@
     opacity: 1;
   }
 }
+
+.m-brand .m-brand__logo img {
+  height: 42px;
+}

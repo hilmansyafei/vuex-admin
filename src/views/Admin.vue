@@ -1,8 +1,12 @@
 <template>
   <div>
     <HlmHeader />
-    <HlmSidebar />
-    <router-view></router-view>
+    <div
+      class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body"
+    >
+      <HlmSidebar />
+      <router-view></router-view>
+    </div>
     <HlmFooter />
   </div>
 </template>
