@@ -1,20 +1,55 @@
 <template>
-  <li class="treeview">
-    <a href="#">
-      <i class="fa fa-cube"></i> <span>{{dataMenu.name}}</span>
-      <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-      </span>
-    </a>
-    <ul class="treeview-menu">
-      <li v-for="(subMenu, index) in dataMenu.subMenu" :key="index">
-        <router-link :to="'/' + module + '/'+ subMenu.path"><i class="fa fa-circle-o"></i> {{subMenu.name}}</router-link>
-      </li>
-    </ul>
-  </li>
+  <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
+    <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+      <a href="#" class="m-menu__link " v-on:click="moveToDashboard">
+        <i class="m-menu__link-icon flaticon-line-graph"></i>
+        <span class="m-menu__link-title">
+          <span class="m-menu__link-wrap">
+            <span class="m-menu__link-text"> Dashboard </span>
+          </span>
+        </span>
+      </a>
+    </li>
+
+    <li class="m-menu__section">
+      <h4 class="m-menu__section-text">{{ dataMenu.name }}</h4>
+      <i class="m-menu__section-icon flaticon-more-v3"></i>
+    </li>
+    <li
+      v-for="(subMenu, index) in dataMenu.subMenu"
+      :key="index"
+      class="m-menu__item  m-menu__item--submenu"
+      aria-haspopup="true"
+      data-menu-submenu-toggle="hover"
+    >
+      <router-link
+        :to="'/' + module + '/' + subMenu.path"
+        class="m-menu__link m-menu__toggle"
+      >
+        <i class="m-menu__link-icon flaticon-layers"></i>
+        <span class="m-menu__link-text">{{ subMenu.name }}</span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </router-link>
+    </li>
+
+    <li class="m-menu__section">
+      <h4 class="m-menu__section-text">Action</h4>
+      <i class="m-menu__section-icon flaticon-more-v3"></i>
+    </li>
+    <li
+      class="m-menu__item  m-menu__item--submenu"
+      aria-haspopup="true"
+      data-menu-submenu-toggle="hover"
+    >
+      <a href="#" class="m-menu__link m-menu__toggle">
+        <i class="m-menu__link-icon flaticon-layers"></i>
+        <span class="m-menu__link-text">Logout</span>
+        <i class="m-menu__ver-arrow la la-angle-right"></i>
+      </a>
+    </li>
+  </ul>
 </template>
 <script>
-
 export default {
   name: "HlmMenu",
   props: {
@@ -25,9 +60,9 @@ export default {
       return "http://localhost:8080";
     },
     module() {
-      return this.dataMenu.module
+      return this.dataMenu.module;
     }
   },
-	mounted() {}
+  mounted() {}
 };
 </script>

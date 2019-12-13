@@ -1,42 +1,20 @@
 <template>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img
-            :src="'assets/dist/img/' + currentUser.foto"
-            class="img-circle"
-            alt="User Image"
-          />
-        </div>
-        <div class="pull-left info">
-          <p>{{ currentUser.fullName }}</p>
-          <a href="#">{{ currentUser.group }}</a>
-        </div>
-      </div>
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Main Menu</li>
-        <li class="treeview" v-on:click="moveToDashboard">
-          <router-link href="" to="/">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-          </router-link>
-        </li>
-        <Menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
-        <li class="header">Action</li>
-        <li>
-          <a href="#" @click="logout">
-            <i class="fa fa-circle-o text-red"></i> 
-            <span>Logout</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+  <div
+    id="m_aside_left"
+    class="m-grid__item	m-aside-left  m-aside-left--skin-dark "
+  >
+    <!-- BEGIN: Aside Menu -->
+    <div
+      id="m_ver_menu"
+      class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
+      data-menu-vertical="true"
+      data-menu-scrollable="false"
+      data-menu-dropdown-timeout="500"
+    >
+      <menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
+    </div>
+    <!-- END: Aside Menu -->
+  </div>
 </template>
 <script>
 import Menu from "./Menu";
@@ -49,19 +27,19 @@ export default {
     Menu
   },
   computed: {
-    ...mapGetters(["accessMenu", "currentUser","isLoadingUser"])
+    ...mapGetters(["accessMenu", "currentUser", "isLoadingUser"])
   },
   mounted() {
     $("#full-load").hide();
   },
   methods: {
-    moveToDashboard(){
-      this.$router.push({name: "Dashboard"});
+    moveToDashboard() {
+      this.$router.push({ name: "Dashboard" });
     },
     logout() {
       $("#full-load").show();
       this.$store.dispatch("logout").then(() => {
-        setTimeout(function(){ 
+        setTimeout(function() {
           window.location.href = BASE_URL;
         }, 1000);
       });
