@@ -41,7 +41,7 @@
       aria-haspopup="true"
       data-menu-submenu-toggle="hover"
     >
-      <a href="#" class="m-menu__link m-menu__toggle">
+      <a href="#" class="m-menu__link m-menu__toggle" v-on:click="logout">
         <i class="m-menu__link-icon flaticon-layers"></i>
         <span class="m-menu__link-text">Logout</span>
         <i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -50,10 +50,24 @@
   </ul>
 </template>
 <script>
+import { BASE_URL } from "@/common/config";
 export default {
   name: "HlmMenu",
   props: {
     dataMenu: { type: Object, required: true }
+  },
+  methods: {
+    moveToDashboard() {
+      this.$router.push({ name: "Dashboard" });
+    },
+    logout() {
+      $("#full-load").show();
+      this.$store.dispatch("logout").then(() => {
+        setTimeout(function() {
+          window.location.href = BASE_URL;
+        }, 1000);
+      });
+    }
   },
   computed: {
     url() {

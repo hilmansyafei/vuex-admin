@@ -11,7 +11,7 @@
       data-menu-scrollable="false"
       data-menu-dropdown-timeout="500"
     >
-      <menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
+      <Menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
     </div>
     <!-- END: Aside Menu -->
   </div>
