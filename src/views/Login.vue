@@ -14,9 +14,7 @@
         <div class="m-login__container">
           <div class="m-login__logo">
             <a href="#">
-              <!--
-                <img src="../../../assets/app/media/img//logos/logo-1.png">
-              -->
+                <img alt="logo canopus" src="img/logo-canopus.png" />
             </a>
           </div>
           <div class="m-login__signin">
@@ -44,7 +42,7 @@
               <div class="form-group m-form__group">
                 <input
                   v-model="username"
-                  class="form-control m-input"
+                  class="form-control m-input input-username"
                   type="text"
                   placeholder="Username"
                 />
@@ -53,7 +51,7 @@
                 <input
                   v-model="password"
                   type="password"
-                  class="form-control m-input m-login__form-input--last"
+                  class="form-control m-input m-login__form-input--last input-password"
                   placeholder="Password"
                 />
               </div>
