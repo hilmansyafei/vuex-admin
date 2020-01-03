@@ -1,94 +1,94 @@
 <template>
-  <div class="content-wrapper">
+  <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>User Management<small>Tables</small></h1>
-      <Breadcrumb :breadCrumbs="breadCrumbs" />
-    </section>
+    <div class="m-subheader">
+      <div class="d-flex align-items-center">
+        <div class="mr-auto">
+          <h3 class="m-subheader__title m-subheader__title--separator">User Management</h3>
+          <Breadcrumb :breadCrumbs="breadCrumbs" />
+        </div>
+      </div>
+    </div>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-5">
-          <!-- general form elements -->
-          <div class="box box-primary box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Search Parameter</h3>
+    <div class="m-content">
+      <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                User List
+                <!-- <small>
+                  initialized from table element
+                </small> -->
+              </h3>
             </div>
-            <!-- /.box-header -->
-            <form v-on:submit.prevent="onSubmit(username, fullName);">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="" class="col-sm-3 control-label">Username</label>
-                  <div class="col-sm-9">
-                    <input
-                      v-model="username"
-                      type="text"
-                      id="username"
-                      class="form-control"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="" class="col-sm-3 control-label">Full Name</label>
-                  <div class="col-sm-9">
-                    <input
-                      v-model="fullName"
-                      type="text"
-                      id="fullName"
-                      class="form-control"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Search</button>
-              </div>
-            </form>
           </div>
-          <!-- /.box -->
+        </div>
+        <div class="m-portlet__body">
+          <!--begin: Search Form -->
+					<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+						<div class="row align-items-center">
+							<div class="col-xl-8 order-2 order-xl-1">
+								<div class="form-group m-form__group row align-items-center">
+									<div class="col-md-4">
+										<div class="m-form__group m-form__group--inline">
+											<div class="m-form__label">
+												<label>
+													Status:
+												</label>
+											</div>
+											<div class="m-form__control">
+												<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_status">
+													<option value="">
+														All
+													</option>
+													<option value="1">
+														Active
+													</option>
+													<option value="2">
+														Inactive
+													</option>
+													<option value="3">
+														Locked
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="d-md-none m--margin-bottom-10"></div>
+									</div>
+									<div class="col-md-4">
+										<div class="m-input-icon m-input-icon--left">
+											<input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
+											<span class="m-input-icon__icon m-input-icon__icon--left">
+												<span>
+													<i class="la la-search"></i>
+												</span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-4 order-1 order-xl-2 m--align-right">
+								<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+									<span>
+										<i class="la la-user"></i>
+										<span>
+											Create New user
+										</span>
+									</span>
+								</a>
+								<div class="m-separator m-separator--dashed d-xl-none"></div>
+							</div>
+						</div>
+					</div>
+					<!--end: Search Form -->
+
+          <div class="m_datatable" id="ajax_data"></div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box box-primary box-solid">
-            <div class="box-header">
-              <h3 class="box-title">User Management</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                <table
-                  id="example2"
-                  class="table table-bordered table-hover table-striped"
-                >
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Username</th>
-                      <th>Name</th>
-                      <th>Role</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-                <Pagination :showPage=showPage :allPage=allPage :currentPage=currentPage :allData=allData />
-              <!-- <MainDataTable /> -->
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
+    </div>
+
+
   </div>
 </template>
 
@@ -127,49 +127,107 @@ export default {
     },
     table(searchVal = { username: "", fullName: "" },allData) {
       allData = 10;
-      let table = $("#example2").DataTable({
-        scrollX: true,
-        paging: false,
-        lengthChange: false,
-        searching: false,
-        ordering: false,
-        info: true,
-        autoWidth: false,
-        processing: true,
-        serverSide: true,
-        destroy: true,
-        ajax: {
-          url: "http://localhost:1322/userManagement",
-          type: "GET", // method  , by default get,
-          dataFilter: function(json) {
-            let data  = JSON.parse(json);
-            //allData = data.RecordsTotal;
-            // console.log(allData);
-            
-            return json;
-            // call your function here
+      const options = {
+        data: {
+          type: 'remote',
+          source: {
+            read: {
+              // sample GET method
+              method: 'GET',
+              url: 'http://localhost:1322/userManagement',
+            },
           },
-          data: {
-            username: searchVal.username,
-            fullName: searchVal.fullName
-          }
+          pageSize: 10,
+          serverPaging: true,
+          serverFiltering: true,
+          serverSorting: true,
         },
-        columnDefs: [
-          {
-            targets: -1,
-            data: null,
-            defaultContent:
-              "<a style='margin:1px' class='btn btn-success' href='/#/settings/user-management/edit-user' title='edit' data-id='1'><span class='fa fa-pencil'></span></a>"
-          },
-          {
-            targets: 4,
-            render: function(data, type, row, meta) {
-              let status = { "0": "Tidak Aktif", "1": "Aktif" };
-              return status[row[4]];
-            }
-          }
-        ]
-      });
+        pagination: true,
+        search: {
+          // enable trigger search by keyup enter
+          onEnter: true,
+          // input text for search
+          input: $('#generalSearch'),
+          // search delay in milliseconds
+          delay: 400,
+        },
+        // columns definition
+        columns: [{
+            field: "no",
+            title: "#",
+            sortable: false,
+            width: 40,
+        }, {
+            field: "username",
+            title: "Username",
+            sortable: false,
+            filterable: false,
+            width: 150,
+            responsive: {visible: "lg"},
+        }, {
+            field: "fullname",
+            title: "Name",
+            sortable: false,
+            filterable: false,
+            width: 150,
+            responsive: {visible: "lg"},
+        }, {
+            field: "groupname",
+            title: "Role",
+            sortable: false,
+            filterable: false,
+            width: 150,
+            responsive: {visible: "lg"},
+        }, {
+            field: "status",
+            title: "Status",
+            sortable: false,
+            filterable: false,
+            width: 150,
+            responsive: {visible: "lg"},
+            template: function (row) {
+    					var status = {
+                0: {'title': 'Active', 'class': 'm-badge--success'},
+    						1: {'title': 'Inactive', 'class': 'm-badge--metal'},
+    						2: {'title': 'Locked', 'class': ' m-badge--danger'},
+    					};
+    					return '<span class="m-badge ' + status[row.status].class + ' m-badge--wide">' + status[row.status].title + '</span>';
+    				}
+        }, {
+				field: "Actions",
+				width: 110,
+				title: "Actions",
+				sortable: false,
+				overflow: 'visible',
+				template: function (row, index, datatable) {
+					var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
+
+					return '\
+						<div class="dropdown ' + dropup + '">\
+							<a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">\
+                                <i class="la la-ellipsis-h"></i>\
+                            </a>\
+						  	<div class="dropdown-menu dropdown-menu-right">\
+						    	<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
+						    	<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Privilege</a>\
+						  	</div>\
+						</div>\
+						<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View ">\
+                            <i class="la la-edit"></i>\
+                        </a>\
+					';
+				}
+			}],
+      };
+      var datatable = $(".m_datatable").mDatatable(options);
+
+      var query = datatable.getDataSourceQuery();
+
+  		$('#m_form_status').on('change', function () {
+  			datatable.search($(this).val(), 'Status');
+  		}).val(typeof query.Status !== 'undefined' ? query.Status : '');
+
+      $('#m_form_status').selectpicker();
     },
     onSubmit(username, fullName) {
       let searchVal = {
@@ -182,11 +240,11 @@ export default {
   computed: {
     breadCrumbs() {
       return [
-        {
-          name: "Dashboard",
-          action: "#",
-          isActive: false
-        },
+        // {
+        //   name: "Dashboard",
+        //   action: "#",
+        //   isActive: false
+        // },
         {
           name: "Settings",
           action: "#",
@@ -194,8 +252,13 @@ export default {
         },
         {
           name: "User Management",
-          isActive: true
+          action: "#",
+          isActive: false
         }
+        // {
+        //   name: "User Management",
+        //   isActive: true
+        // }
       ];
     }
   },
