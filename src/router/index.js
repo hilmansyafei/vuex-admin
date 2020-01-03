@@ -15,9 +15,14 @@ let routing = [
     component: () => import("@/components/Err404")
   },
   {
-    path: "settings/user-management/edit-user",
-    name: "editUser",
+    path: "/settings/userManagement/editUser",
+    name: "Edit User",
     component: () => import("@/components/EditPrivilege")
+  },
+  {
+    path: "/settings/groupManagement/editGroup",
+    name: "Edit Group",
+    component: () => import("@/components/EditGroup")
   }
 ];
 
