@@ -2,6 +2,7 @@ import ApiService from "@/common/api.service";
 import JwtService from "@/common/jwt.service";
 import store from "@/store";
 import {
+  LOG,
   LOGIN,
   LOGOUT,
   REGISTER,
@@ -43,11 +44,15 @@ const getters = {
 };
 
 const actions = {
+  [LOG](context, submenu) {
+    console.log(`Clicked Menu ${submenu.submenu}`);
+  },
   [LOGIN](context, credentials) {
     context.commit("setIsLoginError", false);
     return new Promise((resolve, reject) => {
       ApiService.setHeader();
-      ApiService.post("login", credentials)
+      // ApiService.post("login", credentials)
+      ApiService.post("loginMock", credentials)
         .then(({ data }) => {
           context.commit(SET_AUTH, data.data);
           resolve(data);

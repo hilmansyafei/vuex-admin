@@ -7,6 +7,7 @@ const state = {
 const getters = {
   accessMenu(state) {
     let userPriviledge = store.getters.currentUser.privilege;
+    console.log('userPriviledge: ', userPriviledge);
     if (userPriviledge !== undefined) {
       var menusGet = JSON.parse(JSON.stringify(state.listMenu));
       return menusGet.filter(menu => {
@@ -37,6 +38,25 @@ const actions = {
     let listMenu = [
       {
         _id: "5d7b3a29837e7f3994f603e4",
+        name: "Generals",
+        module: "generals",
+        subMenu: [
+          {
+            _id: "5d7b3aea837e7f3a3840e85b",
+            name: "Merchants",
+            path: "merchantManagement",
+            component: "merchant/MerchantManagement"
+          },
+          {
+            _id: "5d7b3aea837e7f3a3840e85b",
+            name: "Methods",
+            path: "methodManagement",
+            component: "merchant/MethodManagement"
+          }
+        ]
+      },
+      {
+        _id: "5d7b3a29837e7f3994f603e4",
         name: "Settings",
         module: "settings",
         subMenu: [
@@ -47,16 +67,22 @@ const actions = {
             component: "UserManagement"
           },
           {
-            _id: "5d7b3af5837e7f3a3840e85c",
-            name: "Menu Management",
-            path: "menuManagement",
-            component: "MenuManagement"
-          },
-          {
             _id: "5d7b3b02837e7f3a3840e85d",
             name: "Group Management",
             path: "groupManagement",
             component: "GroupManagement"
+          },
+          {
+            _id: "5d7b3b02837e7f3a3840e85d",
+            name: "Recent Activity",
+            path: "recentActivity",
+            component: "Activity"
+          },
+          {
+            _id: "5d7b3b02837e7f3a3840e85d",
+            name: "Audit Trail",
+            path: "auditTrail",
+            component: "AuditTrail"
           }
         ]
       }

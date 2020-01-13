@@ -23,6 +23,16 @@ let routing = [
     path: "/settings/groupManagement/editGroup",
     name: "Edit Group",
     component: () => import("@/components/EditGroup")
+  },
+  {
+    path: "/generals/merchantManagement/add",
+    name: "Add Merchant",
+    component: () => import("@/components/merchant/MerchantWizard")
+  },
+  {
+    path: "/generals/methodManagement/add",
+    name: "Add Method",
+    component: () => import("@/components/merchant/MethodWizard")
   }
 ];
 
