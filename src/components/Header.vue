@@ -99,17 +99,29 @@
                           </div>
                           <div class="m-card-user__details">
                             <span class="m-card-user__name m--font-weight-500">
-                              Mark Andre
+                              {{ currentUser.fullName }}
                             </span>
                             <a
                               href=""
                               class="m-card-user__email m--font-weight-300 m-link"
                             >
-                              mark.andre@gmail.com
+                              {{ currentUser.email }}
                             </a>
                           </div>
                         </div>
                       </div>
+                      <div class="m-dropdown__body">
+  											<div class="m-dropdown__content">
+  												<ul class="m-nav m-nav--skin-light">
+                            <li class="m-nav__separator m-nav__separator--fit"></li>
+                            <li class="m-nav__item">
+                              <a href="#" v-on:click="logout" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                Logout
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        </div>
                     </div>
                   </div>
                 </li>
@@ -141,6 +153,10 @@ export default {
         }, 500);
       });
     }
+  },
+  mounted() {
+    $('.m-dropdown').mDropdown();
+    console.log('currentUser: ', currentUser);
   }
 };
 </script>

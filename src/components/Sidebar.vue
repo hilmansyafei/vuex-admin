@@ -11,12 +11,26 @@
       data-menu-scrollable="false"
       data-menu-dropdown-timeout="500"
     >
+      <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow" style="padding-bottom: 0">
+        <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+          <a href="#" class="m-menu__link " v-on:click="log">
+            <i class="m-menu__link-icon flaticon-line-graph"></i>
+            <span class="m-menu__link-title">
+              <span class="m-menu__link-wrap">
+                <span class="m-menu__link-text"> Dashboard </span>
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+
       <Menu v-for="(menu, index) in accessMenu" :dataMenu="menu" :key="index" />
     </div>
     <!-- END: Aside Menu -->
   </div>
 </template>
 <script>
+import { LOG } from "@/store/actions.type";
 import Menu from "./Menu";
 import { mapGetters } from "vuex";
 import { BASE_URL } from "@/common/config";
@@ -43,7 +57,12 @@ export default {
           window.location.href = BASE_URL;
         }, 1000);
       });
-    }
+    },
+    log() {
+      this.$store.dispatch(LOG).then(() => {
+
+      });
+    },
   }
 };
 </script>
