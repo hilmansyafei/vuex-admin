@@ -4,7 +4,7 @@
     <div class="m-subheader">
       <div class="d-flex align-items-center">
         <div class="mr-auto">
-          <h3 class="m-subheader__title m-subheader__title--separator">User Management</h3>
+          <h3 class="m-subheader__title m-subheader__title--separator">Method Management</h3>
           <Breadcrumb :breadCrumbs="breadCrumbs" />
         </div>
       </div>
@@ -16,7 +16,7 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-                User List
+                Method List
                 <!-- <small>
                   initialized from table element
                 </small> -->
@@ -30,6 +30,32 @@
 						<div class="row align-items-center">
 							<div class="col-xl-8 order-2 order-xl-1">
 								<div class="form-group m-form__group row align-items-center">
+                  <div class="col-md-4">
+										<div class="m-form__group m-form__group--inline">
+											<div class="m-form__label">
+												<label>
+													MID:
+												</label>
+											</div>
+											<div class="m-form__control">
+												<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_merchant">
+													<option value="">
+														M-0001
+													</option>
+													<option value="1">
+														M-0002
+													</option>
+													<option value="2">
+														M-0003
+													</option>
+													<option value="3">
+														M-0004
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="d-md-none m--margin-bottom-10"></div>
+									</div>
 									<div class="col-md-4">
 										<div class="m-form__group m-form__group--inline">
 											<div class="m-form__label">
@@ -69,14 +95,19 @@
 								</div>
 							</div>
 							<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-								<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+                <router-link
+                  :to="'/generals/methodManagement/add'"
+                  class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
+                >
+								<!-- <a href="#" > -->
 									<span>
 										<i class="la la-user"></i>
 										<span>
-											Create New user
+											Create New Method
 										</span>
 									</span>
-								</a>
+								<!-- </a> -->
+                </router-link>
 								<div class="m-separator m-separator--dashed d-xl-none"></div>
 							</div>
 						</div>
@@ -93,13 +124,9 @@
 </template>
 
 <script>
-import Breadcrumb from "./Breadcrm";
-import MainDataTable from "./MainDataTable";
-import Pagination from "./Pagination";
-
-function hilman(){
-  console.log(currentPage);
-}
+import Breadcrumb from "@/components/Breadcrm";
+import MainDataTable from "@/components/MainDataTable";
+import { API_URL } from "@/common/config";
 
 export default {
   name: "UserManagement",
@@ -115,8 +142,7 @@ export default {
   },
   components: {
     Breadcrumb,
-    MainDataTable,
-    Pagination
+    MainDataTable
   },
   methods: {
     addBlueHeader() {
@@ -134,7 +160,7 @@ export default {
             read: {
               // sample GET method
               method: 'GET',
-              url: 'http://localhost:1322/userManagement',
+              url: `${API_URL}/methods`,
             },
           },
           pageSize: 10,
@@ -158,22 +184,22 @@ export default {
             sortable: false,
             width: 40,
         }, {
-            field: "username",
-            title: "Username",
+            field: "methodKey",
+            title: "ID",
             sortable: false,
             filterable: false,
             width: 150,
             responsive: {visible: "lg"},
         }, {
-            field: "fullname",
+            field: "methodName",
             title: "Name",
             sortable: false,
             filterable: false,
             width: 150,
             responsive: {visible: "lg"},
         }, {
-            field: "groupname",
-            title: "Role",
+            field: "module",
+            title: "Source",
             sortable: false,
             filterable: false,
             width: 150,
@@ -187,8 +213,8 @@ export default {
             responsive: {visible: "lg"},
             template: function (row) {
     					var status = {
-                0: {'title': 'Active', 'class': 'm-badge--success'},
-    						1: {'title': 'Inactive', 'class': 'm-badge--metal'},
+    						0: {'title': 'Inactive', 'class': 'm-badge--metal'},
+                1: {'title': 'Active', 'class': 'm-badge--success'},
     						2: {'title': 'Locked', 'class': ' m-badge--danger'},
     					};
     					return '<span class="m-badge ' + status[row.status].class + ' m-badge--wide">' + status[row.status].title + '</span>';
@@ -205,15 +231,15 @@ export default {
 					return '\
 						<div class="dropdown ' + dropup + '">\
 							<a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">\
-                  <i class="la la-ellipsis-h"></i>\
-              </a>\
-					  	<div class="dropdown-menu dropdown-menu-right">\
-					    	<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
-					    	<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Privilege</a>\
-					  	</div>\
+                                <i class="la la-ellipsis-h"></i>\
+                            </a>\
+						  	<div class="dropdown-menu dropdown-menu-right">\
+						    	<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
+						    	<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Privilege</a>\
+						  	</div>\
 						</div>\
 						<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View ">\
-              <i class="la la-edit"></i>\
+                <i class="la la-edit"></i>\
             </a>\
             <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill m_sweetalert_demo_8" title="View ">\
               <i class="la la-trash"></i>\
@@ -231,6 +257,7 @@ export default {
   		}).val(typeof query.Status !== 'undefined' ? query.Status : '');
 
       $('#m_form_status').selectpicker();
+      $('#m_form_merchant').selectpicker();
     },
     onSubmit(username, fullName) {
       let searchVal = {
@@ -252,7 +279,7 @@ export default {
             if (result.value) {
               swal(
                   'Deleted!',
-                  'Account has been deleted.',
+                  'Method has been deleted.',
                   'success'
               )
             }
@@ -269,12 +296,12 @@ export default {
         //   isActive: false
         // },
         {
-          name: "Settings",
+          name: "Generals",
           action: "#",
           isActive: false
         },
         {
-          name: "User Management",
+          name: "Method Management",
           action: "#",
           isActive: false
         }
