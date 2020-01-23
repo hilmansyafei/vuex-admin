@@ -7,7 +7,7 @@ const state = {
 const getters = {
   accessMenu(state) {
     let userPriviledge = store.getters.currentUser.privilege;
-    console.log('userPriviledge: ', userPriviledge);
+    console.log("userPriviledge: ", userPriviledge);
     if (userPriviledge !== undefined) {
       var menusGet = JSON.parse(JSON.stringify(state.listMenu));
       return menusGet.filter(menu => {
@@ -36,6 +36,21 @@ const getters = {
 const actions = {
   setMenu(context) {
     let listMenu = [
+      {
+        _id: "5d7b3a29837e7f3994f603e4",
+        name: "Transactions",
+        module: "transactions",
+        subMenu: [
+          {
+            _id: "5d7b3aea837e7f3a3840e85b",
+            name: "VA Transactions",
+            path: "virtualAccountTransaction",
+            component: "transactions/VirtualAccountTransaction"
+            // component: "merchant/MerchantManagement"
+            // component: "transactions/VirtualAccountTransaction"
+          }
+        ]
+      },
       {
         _id: "5d7b3a29837e7f3994f603e4",
         name: "Generals",

@@ -33,6 +33,17 @@ let routing = [
     path: "/generals/methodManagement/add",
     name: "Add Method",
     component: () => import("@/components/merchant/MethodWizard")
+  },
+  {
+    path: "/transactions/virtualAccountTransaction/:va",
+    name: "Detial Transaction",
+    component: () =>
+      import("@/components/transactions/DetialVirtualAccountTransaction")
+  },
+  {
+    path: "/transactions/virtualAccountTransaction/:va/notification",
+    name: "Notification Transaction",
+    component: () => import("@/components/transactions/NotificationVA")
   }
 ];
 
