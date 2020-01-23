@@ -101,7 +101,7 @@
 .small-box{
   animation: 2s fadeIn;
   animation-fill-mode: forwards;
-  
+
   visibility: hidden;
 }
 
@@ -117,4 +117,16 @@
 
 .m-brand .m-brand__logo img {
   height: 42px;
+}
+
+
+.m_datatable.transactionVirtualAccount .m-datatable__body td[data-field="name"] {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
