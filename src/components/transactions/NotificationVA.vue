@@ -4,7 +4,9 @@
     <div class="m-subheader">
       <div class="d-flex align-items-center">
         <div class="mr-auto">
-          <h3 class="m-subheader__title m-subheader__title--separator">Notification Virtual Account</h3>
+          <h3 class="m-subheader__title m-subheader__title--separator">
+            Notification Virtual Account
+          </h3>
           <Breadcrumb :breadCrumbs="breadCrumbs" />
         </div>
       </div>
@@ -25,12 +27,13 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <div class="m_datatable transactionVirtualAccount" id="ajax_data"></div>
+          <div
+            class="m_datatable transactionVirtualAccount"
+            id="ajax_data"
+          ></div>
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -45,10 +48,10 @@ export default {
     return {
       username: null,
       fullName: null,
-      showPage:3,
-      allPage:6,
-      currentPage:3,
-      allData:33
+      showPage: 3,
+      allPage: 6,
+      currentPage: 3,
+      allData: 33
     };
   },
   components: {
@@ -56,85 +59,90 @@ export default {
     MainDataTable
   },
   methods: {
-    table(searchVal = { username: "", fullName: "" },allData) {
-      allData = 10;
+    table() {
       const options = {
         data: {
-          type: 'remote',
+          type: "remote",
           source: {
             read: {
               // sample GET method
-              method: 'GET',
-              url: `${API_URL}/notification/123`,
-            },
+              method: "GET",
+              url: `${API_URL}/notification/123`
+            }
           },
           pageSize: 10,
           serverPaging: true,
           serverFiltering: true,
-          serverSorting: true,
+          serverSorting: true
         },
         pagination: true,
         search: {
           // enable trigger search by keyup enter
           onEnter: true,
           // input text for search
-          input: $('#generalSearch'),
+          input: $("#generalSearch"),
           // search delay in milliseconds
-          delay: 400,
+          delay: 400
         },
         layout: {
-          theme: 'default',
-          class: 'm-datatable--brand',
+          theme: "default",
+          class: "m-datatable--brand",
           scroll: false,
           height: null,
           footer: false,
           header: true,
 
           smoothScroll: {
-              scrollbarShown: true
+            scrollbarShown: true
           },
 
           spinner: {
-              overlayColor: '#000000',
-              opacity: 0,
-              type: 'loader',
-              state: 'brand',
-              message: true
-          },
+            overlayColor: "#000000",
+            opacity: 0,
+            type: "loader",
+            state: "brand",
+            message: true
+          }
         },
         // columns definition
-        columns: [{
+        columns: [
+          {
             field: "url",
             title: "Url",
             sortable: false,
             filterable: false,
             width: 250,
-            responsive: {visible: "lg"},
-        }, {
+            responsive: { visible: "lg" }
+          },
+          {
             field: "transactionStatus",
             title: "Status Transaction",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-        }, {
+            responsive: { visible: "lg" }
+          },
+          {
             field: "notificationStatus",
             title: "Status Notification",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-        }],
+            responsive: { visible: "lg" }
+          }
+        ]
       };
       var datatable = $(".m_datatable").mDatatable(options);
 
       var query = datatable.getDataSourceQuery();
 
-  		$('#m_form_status').on('change', function () {
-  			datatable.search($(this).val(), 'Status');
-  		}).val(typeof query.Status !== 'undefined' ? query.Status : '');
+      $("#m_form_status")
+        .on("change", function() {
+          datatable.search($(this).val(), "Status");
+        })
+        .val(typeof query.Status !== "undefined" ? query.Status : "");
 
-      $('#m_form_status').selectpicker();
+      $("#m_form_status").selectpicker();
     }
   },
   computed: {
@@ -154,7 +162,7 @@ export default {
     }
   },
   mounted() {
-    this.table({},this.currentPage);
+    this.table();
   }
 };
 </script>

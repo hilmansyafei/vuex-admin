@@ -269,7 +269,6 @@
 
 <script>
 import Breadcrumb from "@/components/Breadcrm";
-import { API_URL } from "@/common/config";
 
 export default {
   name: "UserManagement",
