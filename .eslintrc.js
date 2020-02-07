@@ -12,7 +12,8 @@ module.exports = {
     parser: "babel-eslint"
   },
   globals: {
-    "$": true,
-    "jQuery": true
+    $: true,
+    jQuery: true,
+    swal: true
   }
 };
