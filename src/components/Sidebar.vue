@@ -11,7 +11,10 @@
       data-menu-scrollable="false"
       data-menu-dropdown-timeout="500"
     >
-      <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow" style="padding-bottom: 0">
+      <ul
+        class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow"
+        style="padding-bottom: 0"
+      >
         <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
           <a href="#" class="m-menu__link " v-on:click="log">
             <i class="m-menu__link-icon flaticon-line-graph"></i>
@@ -59,10 +62,8 @@ export default {
       });
     },
     log() {
-      this.$store.dispatch(LOG).then(() => {
-
-      });
-    },
+      this.$store.dispatch(LOG).then(() => {});
+    }
   }
 };
 </script>
