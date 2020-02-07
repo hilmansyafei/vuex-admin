@@ -31,8 +31,7 @@ export default {
     // }
   },
   mounted() {
-    let vm = this;
-    
+    // let vm = this;
   }
 };
 </script>

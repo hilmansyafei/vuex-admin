@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-				<div class="m-portlet__body">
+        <div class="m-portlet__body">
           <form class="m-form m-form--label-align-right">
             <div class="m-form__section m-form__section--first">
               <div class="m-form__heading">
@@ -35,9 +35,12 @@
                   Name:
                 </label>
                 <div class="col-lg-6">
-                  <input type="email" class="form-control m-input" placeholder="Enter full name">
-                  <span class="m-form__help">
-                  </span>
+                  <input
+                    type="email"
+                    class="form-control m-input"
+                    placeholder="Enter full name"
+                  />
+                  <span class="m-form__help"> </span>
                 </div>
               </div>
               <div class="form-group m-form__group row">
@@ -45,9 +48,11 @@
                   Description:
                 </label>
                 <div class="col-lg-6">
-                  <textarea class="form-control m-input" placeholder="Enter full name"></textarea>
-                  <span class="m-form__help">
-                  </span>
+                  <textarea
+                    class="form-control m-input"
+                    placeholder="Enter full name"
+                  ></textarea>
+                  <span class="m-form__help"> </span>
                 </div>
               </div>
             </div>
@@ -59,24 +64,27 @@
                 </h3>
               </div>
               <div class="form-group m-form__group">
-                <MenuSetting v-for="(menu, index) in allMenu" :dataMenu="menu" :key="index" />
+                <MenuSetting
+                  v-for="(menu, index) in allMenu"
+                  :dataMenu="menu"
+                  :key="index"
+                />
               </div>
             </div>
           </form>
-				</div>
+        </div>
         <div class="m-portlet__foot m-form m-portlet__foot--fit">
-					<div class="m-form__actions m-form__actions">
-						<button type="reset" class="btn btn-primary">
-							Submit
-						</button>
-						<button type="reset" class="btn btn-secondary">
-							Cancel
-						</button>
-					</div>
-				</div>
+          <div class="m-form__actions m-form__actions">
+            <button type="reset" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="reset" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -85,22 +93,22 @@ import MenuSetting from "./MenuSetting";
 import { mapGetters } from "vuex";
 
 export default {
-	name: "EditSetting",
-	components: {
-		Breadcrumb,
-		MenuSetting
-	},
+  name: "EditSetting",
+  components: {
+    Breadcrumb,
+    MenuSetting
+  },
   methods: {
-    addBlueHeader() {
-      var portlet = $('#m_portlet').mPortlet();
+    portlet() {
+      $("#m_portlet").mPortlet();
     },
     dataTable() {
-      $('#m_datatable').mDatatable();
+      $("#m_datatable").mDatatable();
       $("#example2").DataTable();
     }
   },
-	computed: {
-		...mapGetters(["allMenu"]),
+  computed: {
+    ...mapGetters(["allMenu"]),
     breadCrumbs() {
       return [
         {
@@ -122,7 +130,7 @@ export default {
     }
   },
   mounted() {
-    this.addBlueHeader();
+    this.portlet();
     //Pace.restart();
   }
 };
