@@ -5,7 +5,8 @@
         Method Settings
       </h3>
     </div>
-    <div class="form-group m-form__group row"
+    <div
+      class="form-group m-form__group row"
       v-for="(field, index) in dataMenu"
       :key="index"
     >
@@ -13,10 +14,14 @@
         * {{ field.name }}:
       </label>
       <div class="col-xl-9 col-lg-9">
-        <input :type="field.type" name="name" class="form-control m-input" placeholder="" :value="field.type" />
-        <span class="m-form__help">
-          Please enter your {{ field.name }}
-        </span>
+        <input
+          :type="field.type"
+          name="name"
+          class="form-control m-input"
+          placeholder=""
+          :value="field.type"
+        />
+        <span class="m-form__help"> Please enter your {{ field.name }} </span>
       </div>
     </div>
   </div>

@@ -1,5 +1,8 @@
 <template>
-  <ul class="m-menu__nav m-menu__nav--dropdown-submenu-arrow" style="padding: 0">
+  <ul
+    class="m-menu__nav m-menu__nav--dropdown-submenu-arrow"
+    style="padding: 0"
+  >
     <li class="m-menu__section">
       <h4 class="m-menu__section-text">{{ dataMenu.name }}</h4>
       <i class="m-menu__section-icon flaticon-more-v3"></i>
@@ -44,11 +47,9 @@ export default {
       });
     },
     log(submenu) {
-      console.log('submenu', submenu);
-      this.$store.dispatch(LOG, {submenu}).then(() => {
-
-      });
-    },
+      console.log("submenu", submenu);
+      this.$store.dispatch(LOG, { submenu }).then(() => {});
+    }
   },
   computed: {
     url() {

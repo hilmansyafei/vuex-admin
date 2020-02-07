@@ -28,18 +28,21 @@
         </div>
         <div class="m-portlet__body">
           <div class="m_datatable" id="local_data">
-          <table id="example2" class="table table-bordered table-hover table-striped">
-            <thead>
-              <tr>
-                <th>Field 1</th>
-                <th>Field 2</th>
-                <th>Field 3</th>
-                <th>Field 4</th>
-                <th>Field 5</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+            <table
+              id="example2"
+              class="table table-bordered table-hover table-striped"
+            >
+              <thead>
+                <tr>
+                  <th>Field 1</th>
+                  <th>Field 2</th>
+                  <th>Field 3</th>
+                  <th>Field 4</th>
+                  <th>Field 5</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -93,7 +96,7 @@ export default {
       $(".table th").addClass("bg-blue");
     },
     dataTable() {
-      $('#m_datatable').mDatatable();
+      $("#m_datatable").mDatatable();
       $("#example2").DataTable();
     }
   },
@@ -133,4 +136,3 @@ export default {
   }
 };
 </script>
-
