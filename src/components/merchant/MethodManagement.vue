@@ -4,7 +4,9 @@
     <div class="m-subheader">
       <div class="d-flex align-items-center">
         <div class="mr-auto">
-          <h3 class="m-subheader__title m-subheader__title--separator">Method Management</h3>
+          <h3 class="m-subheader__title m-subheader__title--separator">
+            Method Management
+          </h3>
           <Breadcrumb :breadCrumbs="breadCrumbs" />
         </div>
       </div>
@@ -26,100 +28,111 @@
         </div>
         <div class="m-portlet__body">
           <!--begin: Search Form -->
-					<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-						<div class="row align-items-center">
-							<div class="col-xl-8 order-2 order-xl-1">
-								<div class="form-group m-form__group row align-items-center">
+          <div
+            class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30"
+          >
+            <div class="row align-items-center">
+              <div class="col-xl-8 order-2 order-xl-1">
+                <div class="form-group m-form__group row align-items-center">
                   <div class="col-md-4">
-										<div class="m-form__group m-form__group--inline">
-											<div class="m-form__label">
-												<label>
-													MID:
-												</label>
-											</div>
-											<div class="m-form__control">
-												<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_merchant">
-													<option value="">
-														M-0001
-													</option>
-													<option value="1">
-														M-0002
-													</option>
-													<option value="2">
-														M-0003
-													</option>
-													<option value="3">
-														M-0004
-													</option>
-												</select>
-											</div>
-										</div>
-										<div class="d-md-none m--margin-bottom-10"></div>
-									</div>
-									<div class="col-md-4">
-										<div class="m-form__group m-form__group--inline">
-											<div class="m-form__label">
-												<label>
-													Status:
-												</label>
-											</div>
-											<div class="m-form__control">
-												<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_status">
-													<option value="">
-														All
-													</option>
-													<option value="1">
-														Active
-													</option>
-													<option value="2">
-														Inactive
-													</option>
-													<option value="3">
-														Locked
-													</option>
-												</select>
-											</div>
-										</div>
-										<div class="d-md-none m--margin-bottom-10"></div>
-									</div>
-									<div class="col-md-4">
-										<div class="m-input-icon m-input-icon--left">
-											<input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
-											<span class="m-input-icon__icon m-input-icon__icon--left">
-												<span>
-													<i class="la la-search"></i>
-												</span>
-											</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                    <div class="m-form__group m-form__group--inline">
+                      <div class="m-form__label">
+                        <label>
+                          MID:
+                        </label>
+                      </div>
+                      <div class="m-form__control">
+                        <select
+                          class="form-control m-bootstrap-select m-bootstrap-select--solid"
+                          id="m_form_merchant"
+                        >
+                          <option value="">
+                            M-0001
+                          </option>
+                          <option value="1">
+                            M-0002
+                          </option>
+                          <option value="2">
+                            M-0003
+                          </option>
+                          <option value="3">
+                            M-0004
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="d-md-none m--margin-bottom-10"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-form__group m-form__group--inline">
+                      <div class="m-form__label">
+                        <label>
+                          Status:
+                        </label>
+                      </div>
+                      <div class="m-form__control">
+                        <select
+                          class="form-control m-bootstrap-select m-bootstrap-select--solid"
+                          id="m_form_status"
+                        >
+                          <option value="">
+                            All
+                          </option>
+                          <option value="1">
+                            Active
+                          </option>
+                          <option value="2">
+                            Inactive
+                          </option>
+                          <option value="3">
+                            Locked
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="d-md-none m--margin-bottom-10"></div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-input-icon m-input-icon--left">
+                      <input
+                        type="text"
+                        class="form-control m-input m-input--solid"
+                        placeholder="Search..."
+                        id="generalSearch"
+                      />
+                      <span class="m-input-icon__icon m-input-icon__icon--left">
+                        <span>
+                          <i class="la la-search"></i>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 order-1 order-xl-2 m--align-right">
                 <router-link
                   :to="'/generals/methodManagement/add'"
                   class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
                 >
-								<!-- <a href="#" > -->
-									<span>
-										<i class="la la-user"></i>
-										<span>
-											Create New Method
-										</span>
-									</span>
-								<!-- </a> -->
+                  <!-- <a href="#" > -->
+                  <span>
+                    <i class="la la-user"></i>
+                    <span>
+                      Create New Method
+                    </span>
+                  </span>
+                  <!-- </a> -->
                 </router-link>
-								<div class="m-separator m-separator--dashed d-xl-none"></div>
-							</div>
-						</div>
-					</div>
-					<!--end: Search Form -->
+                <div class="m-separator m-separator--dashed d-xl-none"></div>
+              </div>
+            </div>
+          </div>
+          <!--end: Search Form -->
 
           <div class="m_datatable" id="ajax_data"></div>
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -134,10 +147,10 @@ export default {
     return {
       username: null,
       fullName: null,
-      showPage:3,
-      allPage:6,
-      currentPage:3,
-      allData:33
+      showPage: 3,
+      allPage: 6,
+      currentPage: 3,
+      allData: 33
     };
   },
   components: {
@@ -145,91 +158,99 @@ export default {
     MainDataTable
   },
   methods: {
-    addBlueHeader() {
-      $(".table th").addClass("bg-blue");
-    },
-    updateData(){
-      console.log("jalan");
-    },
-    table(searchVal = { username: "", fullName: "" },allData) {
-      allData = 10;
+    table() {
       const options = {
         data: {
-          type: 'remote',
+          type: "remote",
           source: {
             read: {
               // sample GET method
-              method: 'GET',
-              url: `${API_URL}/methods`,
-            },
+              method: "GET",
+              url: `${API_URL}/methods`
+            }
           },
           pageSize: 10,
           serverPaging: true,
           serverFiltering: true,
-          serverSorting: true,
+          serverSorting: true
         },
         pagination: true,
         search: {
           // enable trigger search by keyup enter
           onEnter: true,
           // input text for search
-          input: $('#generalSearch'),
+          input: $("#generalSearch"),
           // search delay in milliseconds
-          delay: 400,
+          delay: 400
         },
         // columns definition
-        columns: [{
+        columns: [
+          {
             field: "no",
             title: "#",
             sortable: false,
-            width: 40,
-        }, {
+            width: 40
+          },
+          {
             field: "methodKey",
             title: "ID",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-        }, {
+            responsive: { visible: "lg" }
+          },
+          {
             field: "methodName",
             title: "Name",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-        }, {
+            responsive: { visible: "lg" }
+          },
+          {
             field: "module",
             title: "Source",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-        }, {
+            responsive: { visible: "lg" }
+          },
+          {
             field: "status",
             title: "Status",
             sortable: false,
             filterable: false,
             width: 150,
-            responsive: {visible: "lg"},
-            template: function (row) {
-    					var status = {
-    						0: {'title': 'Inactive', 'class': 'm-badge--metal'},
-                1: {'title': 'Active', 'class': 'm-badge--success'},
-    						2: {'title': 'Locked', 'class': ' m-badge--danger'},
-    					};
-    					return '<span class="m-badge ' + status[row.status].class + ' m-badge--wide">' + status[row.status].title + '</span>';
-    				}
-        }, {
-				field: "Actions",
-				width: 110,
-				title: "Actions",
-				sortable: false,
-				overflow: 'visible',
-				template: function (row, index, datatable) {
-					var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
+            responsive: { visible: "lg" },
+            template: function(row) {
+              var status = {
+                0: { title: "Inactive", class: "m-badge--metal" },
+                1: { title: "Active", class: "m-badge--success" },
+                2: { title: "Locked", class: " m-badge--danger" }
+              };
+              return (
+                '<span class="m-badge ' +
+                status[row.status].class +
+                ' m-badge--wide">' +
+                status[row.status].title +
+                "</span>"
+              );
+            }
+          },
+          {
+            field: "Actions",
+            width: 110,
+            title: "Actions",
+            sortable: false,
+            overflow: "visible",
+            template: function(row, index, datatable) {
+              var dropup = datatable.getPageSize() - index <= 4 ? "dropup" : "";
 
-					return '\
-						<div class="dropdown ' + dropup + '">\
+              return (
+                '\
+						<div class="dropdown ' +
+                dropup +
+                '">\
 							<a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">\
                                 <i class="la la-ellipsis-h"></i>\
                             </a>\
@@ -244,46 +265,39 @@ export default {
             <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill m_sweetalert_demo_8" title="View ">\
               <i class="la la-trash"></i>\
             </a>\
-					';
-				}
-			}],
+					'
+              );
+            }
+          }
+        ]
       };
       var datatable = $(".m_datatable").mDatatable(options);
 
       var query = datatable.getDataSourceQuery();
 
-  		$('#m_form_status').on('change', function () {
-  			datatable.search($(this).val(), 'Status');
-  		}).val(typeof query.Status !== 'undefined' ? query.Status : '');
+      $("#m_form_status")
+        .on("change", function() {
+          datatable.search($(this).val(), "Status");
+        })
+        .val(typeof query.Status !== "undefined" ? query.Status : "");
 
-      $('#m_form_status').selectpicker();
-      $('#m_form_merchant').selectpicker();
-    },
-    onSubmit(username, fullName) {
-      let searchVal = {
-        username: username,
-        fullName: fullName
-      };
-      this.table(searchVal,this.allData);
+      $("#m_form_status").selectpicker();
+      $("#m_form_merchant").selectpicker();
     },
     deleteConfirm() {
-      $(document).on('click', '.m_sweetalert_demo_8', function(e) {
+      $(document).on("click", ".m_sweetalert_demo_8", function(e) {
         e.preventDefault();
-          swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!'
-          }).then(function(result) {
-            if (result.value) {
-              swal(
-                  'Deleted!',
-                  'Method has been deleted.',
-                  'success'
-              )
-            }
-          });
+        swal({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!"
+        }).then(function(result) {
+          if (result.value) {
+            swal("Deleted!", "Method has been deleted.", "success");
+          }
+        });
       });
     }
   },
@@ -313,8 +327,7 @@ export default {
     }
   },
   mounted() {
-    this.addBlueHeader();
-    this.table({},this.currentPage);
+    this.table();
     this.deleteConfirm();
   }
 };
