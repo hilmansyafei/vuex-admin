@@ -25,7 +25,7 @@ const actions = {
       });
     });
   },
-  cleanDashboard(context){
+  cleanDashboard(context) {
     context.commit("cleanDashboard");
   }
 };

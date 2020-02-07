@@ -20,6 +20,11 @@ let routing = [
     component: () => import("@/components/EditPrivilege")
   },
   {
+    path: "/settings/groupManagement/addGroup",
+    name: "Add Group",
+    component: () => import("@/components/groups/AddGroup")
+  },
+  {
     path: "/settings/groupManagement/editGroup",
     name: "Edit Group",
     component: () => import("@/components/EditGroup")

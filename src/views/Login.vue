@@ -14,7 +14,7 @@
         <div class="m-login__container">
           <div class="m-login__logo">
             <a href="#">
-                <img alt="logo canopus" src="img/logo-canopus.png" />
+              <img alt="logo canopus" src="img/logo-canopus.png" />
             </a>
           </div>
           <div class="m-login__signin">
@@ -36,7 +36,7 @@
               <strong>Warning!</strong> {{ messageErrorLogin }}
             </div>
             <form
-              v-on:submit.prevent="onSubmit(username, password);"
+              v-on:submit.prevent="onSubmit(username, password)"
               class="m-login__form m-form"
             >
               <div class="form-group m-form__group">

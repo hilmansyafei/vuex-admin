@@ -1,13 +1,15 @@
+import ApiService from "@/common/api.service";
 import store from "@/store";
 
 const state = {
-  listMenu: []
+  listMenu: [],
+  listMenuGroup: [],
+  responseGroup: {}
 };
 
 const getters = {
   accessMenu(state) {
     let userPriviledge = store.getters.currentUser.privilege;
-    console.log("userPriviledge: ", userPriviledge);
     if (userPriviledge !== undefined) {
       var menusGet = JSON.parse(JSON.stringify(state.listMenu));
       return menusGet.filter(menu => {
@@ -30,6 +32,12 @@ const getters = {
   },
   allMenu(state) {
     return state.listMenu;
+  },
+  allMenuGroup(state) {
+    return state.listMenuGroup;
+  },
+  createGroup(state) {
+    return state.responseGroup;
   }
 };
 
@@ -103,6 +111,30 @@ const actions = {
       }
     ];
     context.commit("setMenu", listMenu);
+  },
+  getMenu(context) {
+    return new Promise((resolve, reject) => {
+      ApiService.get("/menu")
+        .then(({ data }) => {
+          context.commit("setMenuGroup", data);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          reject(response);
+        });
+    });
+  },
+  createGroup(context, dataRequest) {
+    return new Promise((resolve, reject) => {
+      ApiService.post("/userGroup", dataRequest)
+        .then(({ data }) => {
+          context.commit("setResponseGroup", data);
+          resolve(data);
+        })
+        .catch(({ response }) => {
+          reject(response);
+        });
+    });
   }
 };
 
@@ -110,6 +142,12 @@ const actions = {
 const mutations = {
   setMenu(state, menuGet) {
     state.listMenu = menuGet;
+  },
+  setMenuGroup(state, menuGet) {
+    state.listMenuGroup = menuGet;
+  },
+  setResponseGroup(state, response) {
+    state.responseGroup = response;
   }
 };
 
