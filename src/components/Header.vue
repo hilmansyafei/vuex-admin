@@ -111,17 +111,23 @@
                         </div>
                       </div>
                       <div class="m-dropdown__body">
-  											<div class="m-dropdown__content">
-  												<ul class="m-nav m-nav--skin-light">
-                            <li class="m-nav__separator m-nav__separator--fit"></li>
+                        <div class="m-dropdown__content">
+                          <ul class="m-nav m-nav--skin-light">
+                            <li
+                              class="m-nav__separator m-nav__separator--fit"
+                            ></li>
                             <li class="m-nav__item">
-                              <a href="#" v-on:click="logout" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                              <a
+                                href="#"
+                                v-on:click="logout"
+                                class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+                              >
                                 Logout
                               </a>
                             </li>
                           </ul>
                         </div>
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -140,7 +146,7 @@ import { LOGOUT } from "@/store/actions.type";
 import { BASE_URL } from "@/common/config";
 
 export default {
-  name: "HlmHeader",
+  name: "header",
   computed: {
     ...mapGetters(["currentUser"])
   },
@@ -155,8 +161,7 @@ export default {
     }
   },
   mounted() {
-    $('.m-dropdown').mDropdown();
-    console.log('currentUser: ', currentUser);
+    $(".m-dropdown").mDropdown();
   }
 };
 </script>

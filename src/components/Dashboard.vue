@@ -19,7 +19,12 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <div v-if="!isLoadingDashboard" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              <div v-if="!isLoadingDashboard" class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <h3 v-if="isLoadingDashboard">150</h3>
               <p>New Orders</p>
             </div>
@@ -34,8 +39,15 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <div v-if="!isLoadingDashboard" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-              <h3 v-if="isLoadingDashboard">53<sup style="font-size: 20px">%</sup></h3>
+              <div v-if="!isLoadingDashboard" class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <h3 v-if="isLoadingDashboard">
+                53<sup style="font-size: 20px">%</sup>
+              </h3>
               <p>Bounce Rate</p>
             </div>
             <div class="icon"><i class="ion ion-stats-bars"></i></div>
@@ -49,7 +61,12 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <div v-if="!isLoadingDashboard" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              <div v-if="!isLoadingDashboard" class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <h3 v-if="isLoadingDashboard">44</h3>
 
               <p>User Registrations</p>
@@ -65,7 +82,12 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <div v-if="!isLoadingDashboard" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              <div v-if="!isLoadingDashboard" class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <h3 v-if="isLoadingDashboard">65</h3>
 
               <p>Unique Visitors</p>
@@ -88,13 +110,13 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "HlmDashboard",
-  mounted(){
+  mounted() {
     // this.$store
     // .dispatch("getDashboard")
     // .catch(() => {});
   },
   computed: {
     ...mapGetters(["isLoadingDashboard"])
-  },
+  }
 };
 </script>
